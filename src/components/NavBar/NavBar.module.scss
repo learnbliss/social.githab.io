@@ -1,3 +1,5 @@
+$color: #67DBF9;
+
 .nav {
   grid-area: n;
 }
@@ -9,9 +11,13 @@
   transition: transform .3s, color .3s ease-in-out;
 }
 
+.item a {
+  position: relative;
+}
+
 .item:hover {
   transform: scale(1.1);
-  color: #67DBF9;
+  color: $color;
 }
 
 .item:active {
@@ -19,8 +25,19 @@
   transition: color .1s;
 }
 
-.item.active {
-  transform: scale(1.1);
-  color: #67DBF9;
-  list-style-type: circle;
+.item a.active {
+  color: $color;
+}
+
+.item a.active:after {
+  content: '';
+  position: absolute;
+  background-color: $color;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  left: -1rem;
+  margin: auto 0;
 }
