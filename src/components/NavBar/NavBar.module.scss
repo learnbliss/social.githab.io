@@ -1,0 +1,26 @@
+.nav {
+  grid-area: n;
+}
+
+.item {
+  margin: 1rem 3rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: transform .3s, color .3s ease-in-out;
+}
+
+.item:hover {
+  transform: scale(1.1);
+  color: #67DBF9;
+}
+
+.item:active {
+  color: rgba(255, 255, 255, 0.3);
+  transition: color .1s;
+}
+
+.item.active {
+  transform: scale(1.1);
+  color: #67DBF9;
+  list-style-type: circle;
+}

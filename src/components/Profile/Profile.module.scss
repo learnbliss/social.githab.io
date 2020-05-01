@@ -1,0 +1,26 @@
+.content {
+  grid-area: c;
+  position: relative;
+
+  img {
+    height: auto;
+    max-height: 18rem;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+  }
+}
+
+//.content::after {
+//  content: "";
+//  background: url(img/Sapa-terraces.jpg);
+//  opacity: 0.2;
+//  top: 0;
+//  left: 0;
+//  right: 0;
+//  bottom: 0;
+//  background-size: cover;
+//  position: absolute;
+//  z-index: -1;
+//  filter: blur(5px);
+//}
