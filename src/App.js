@@ -10,6 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 function App(props) {
+    const {addPost} = props;
     const {posts,} = props.stateFork.profilePage;
     const {messages, dialogs,} = props.stateFork.messagesPage;
     return (
@@ -21,7 +22,7 @@ function App(props) {
                     return <Dialogs dialogs={dialogs} messages={messages}/>
                 }}/>
                 <Route path='/profile' render={() => {
-                    return <Profile posts={posts}/>
+                    return <Profile posts={posts} addPost={addPost}/>
                 }}/>
                 <Route path='/news' render={() => {
                     return <News/>

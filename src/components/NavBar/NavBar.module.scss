@@ -3,7 +3,8 @@ $color: #67DBF9;
 .nav {
   grid-area: n;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 5rem;
 }
 
 .item {
@@ -46,6 +47,7 @@ $color: #67DBF9;
 
 .sideBar {
   margin: 1rem 3rem;
+
   > span {
     font-weight: bold;
     font-size: 1.4rem;

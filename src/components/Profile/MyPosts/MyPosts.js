@@ -3,11 +3,13 @@ import styles from './MyPosts.module.scss'
 import PostItem from "./PostItem/PostItem";
 
 const MyPosts = (props) => {
-    const {posts} = props;
+    const {posts, addPost} = props;
     const textAreaRef = React.createRef();
-    const addPost = () => {
-        console.log('new post: ', textAreaRef.current.value)
-    }
+    const addPostLocal = () => {
+        console.log('new post: ', textAreaRef.current.value);
+        addPost(textAreaRef.current.value);
+        textAreaRef.current.value = '';
+    };
     return (
         <div className={styles.post}>
             <h3>my post</h3>
@@ -15,7 +17,7 @@ const MyPosts = (props) => {
                 <textarea ref={textAreaRef}/>
             </div>
             <div>
-                <button onClick={addPost}>add post</button>
+                <button onClick={addPostLocal}>add post</button>
             </div>
             {posts.map((item) => {
                 return (

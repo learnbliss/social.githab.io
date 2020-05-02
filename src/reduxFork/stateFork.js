@@ -1,9 +1,11 @@
+import renderThree from "../render";
+
 let stateFork = {
     profilePage: {
         posts: [
-            {message: 'My post 1', likeCounts: '3'},
-            {message: 'My secondary post', likeCounts: '5'},
-            {message: 'My third post', likeCounts: '25'},
+            {id: 1, message: 'My post 1', likeCounts: '3'},
+            {id: 2, message: 'My secondary post', likeCounts: '5'},
+            {id: 3, message: 'My third post', likeCounts: '25'},
         ],
     },
     messagesPage: {
@@ -20,6 +22,17 @@ let stateFork = {
             {id: '4', name: 'Arseniy', avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcShIt3l2-355Sf6La3bZUy7lvRj6vDzjhWQfW1uNHWYxwRNcwzY&usqp=CAU'},
         ],
     },
+};
+
+export const addPost = (post) => {
+    const arr = stateFork.profilePage.posts;
+    let newPost = {
+        id: arr.length + 1,
+        message: post,
+        likeCounts: 0,
+    };
+    arr.push(newPost);
+    renderThree(stateFork)
 };
 
 export default stateFork;
