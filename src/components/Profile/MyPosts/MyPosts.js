@@ -4,16 +4,19 @@ import PostItem from "./PostItem/PostItem";
 
 const MyPosts = (props) => {
     const {posts} = props;
+    const textAreaRef = React.createRef();
+    const addPost = () => {
+        console.log('new post: ', textAreaRef.current.value)
+    }
     return (
         <div className={styles.post}>
             <h3>my post</h3>
             <div>
-                <textarea/>
+                <textarea ref={textAreaRef}/>
             </div>
             <div>
-                <button>add post</button>
+                <button onClick={addPost}>add post</button>
             </div>
-            {console.log('props.posts: ', props.posts)}
             {posts.map((item) => {
                 return (
                     <PostItem key={item.message} message={item.message} likeCounts={item.likeCounts}/>

@@ -5,6 +5,10 @@ import Message from "./Message/Message";
 
 const Dialogs = props => {
     const {dialogs, messages,} = props;
+    const textAreaRef = React.createRef();
+    const addPost = () => {
+        console.log('new post: ', textAreaRef.current.value)
+    };
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogItems}>
@@ -15,6 +19,8 @@ const Dialogs = props => {
                 })}
             </div>
             <div className={styles.messageItems}>
+                <textarea ref={textAreaRef}/>
+                <button onClick={addPost} style={{justifySelf: 'start'}}>add post</button>
                 {messages.map((item) => {
                     return (
                         <Message key={item.message} message={item.message}/>

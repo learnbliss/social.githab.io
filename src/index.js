@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import stateFork from './reduxFork/stateFork'
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App stateFork={stateFork}/>
+        <BrowserRouter>
+            <App stateFork={stateFork}/>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );
