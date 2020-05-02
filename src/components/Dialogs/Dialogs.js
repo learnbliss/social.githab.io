@@ -5,21 +5,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 const Dialogs = props => {
-
-    const dialogs = [
-        {id: '1', name: 'Andre'},
-        {id: '2', name: 'Dimka'},
-        {id: '3', name: 'Nikolay'},
-        {id: '4', name: 'Arseniy'},
-    ];
-
-    const messages = [
-        {message: 'Привет как дела'},
-        {message: 'У меня нормич'},
-        {message: 'А у тебя?'},
-        {message: 'все по феншую'},
-    ];
-
+    const {dialogs, messages,} = props;
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogItems}>
