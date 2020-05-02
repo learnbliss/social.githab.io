@@ -2,12 +2,14 @@ $color: #67DBF9;
 
 .nav {
   grid-area: n;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 
 .item {
   margin: 1rem 3rem;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   transition: transform .3s, color .3s ease-in-out;
 }
 
@@ -40,4 +42,12 @@ $color: #67DBF9;
   bottom: 0;
   left: -1rem;
   margin: auto 0;
+}
+
+.sideBar {
+  margin: 1rem 3rem;
+  > span {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
 }

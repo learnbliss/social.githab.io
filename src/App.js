@@ -10,12 +10,13 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 function App(props) {
-    const {posts, dialogs, messages,} = props;
+    const {posts,} = props.stateFork.profilePage;
+    const {messages, dialogs,} = props.stateFork.messagesPage;
     return (
         <BrowserRouter>
             <div className="App">
                 <Header/>
-                <NavBar/>
+                <NavBar dialogs={dialogs}/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs' render={() => {
                         return <Dialogs dialogs={dialogs} messages={messages}/>
