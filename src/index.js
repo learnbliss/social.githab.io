@@ -11,7 +11,11 @@ const reRenderThree = (state) => {
         <React.StrictMode>
             <BrowserRouter>
                 <App
-                    store={store}
+                    state={store.getState()}
+                    addMessage={store.addMessage.bind(store)}
+                    pushDataToStateDialog={store.pushDataToStateDialog.bind(store)}
+                    addPost={store.addPost.bind(store)}
+                    pushDataToState={store.pushDataToState.bind(store)}
                 />
             </BrowserRouter>
         </React.StrictMode>,
@@ -19,7 +23,7 @@ const reRenderThree = (state) => {
     );
 };
 
-reRenderThree(store.stateFork);
+reRenderThree(store.getState());
 
 store.subscribe(reRenderThree);
 

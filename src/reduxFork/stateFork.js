@@ -1,15 +1,15 @@
 /*todo
 Упаковать весь state в объект store с методами
 Экспортировать store
-в index.js в компоненту <App> передать весь store
+в index.js в компоненту <App> передать весь store и методы
 далее вызывать только необходимые данные или функции
  */
 
 let store = {
-    reRenderThree() {
+    _callSubscriber() {
         console.log('state changed')
     },
-    stateFork: {
+    _stateFork: {
         profilePage: {
             posts: [
                 {id: 1, message: 'My post 1', likeCounts: '3'},
@@ -20,10 +20,10 @@ let store = {
         },
         messagesPage: {
             messages: [
-                {message: 'Привет как дела'},
-                {message: 'У меня нормич'},
-                {message: 'А у тебя?'},
-                {message: 'все по феншую'},
+                {id: 1, message: 'Привет как дела'},
+                {id: 2, message: 'У меня нормич'},
+                {id: 3, message: 'А у тебя?'},
+                {id: 4, message: 'все по феншую'},
             ],
             dialogs: [
                 {
@@ -47,44 +47,48 @@ let store = {
         },
     },
 
+    getState() {
+        return this._stateFork
+    },
+
     addMessage() {
-        let {messages, textArea} = this.stateFork.messagesPage;
-        messages.push({message: textArea,});
-        this.reRenderThree(this); //reRenderThree(stateFork);
-        textArea = '';
+        let {messages, textArea} = this._stateFork.messagesPage;
+        messages.push({id: messages.length + 1, message: textArea,});
+        this._stateFork.messagesPage.textArea = '';
+        this._callSubscriber(this);
     },
 
     pushDataToStateDialog(textAreaValue) {
-        this.stateFork.messagesPage.textArea = textAreaValue;
-        this.reRenderThree(this); //reRenderThree(stateFork);
+        this._stateFork.messagesPage.textArea = textAreaValue;
+        this._callSubscriber(this);
     },
 
     addPost() {
         let newPost = {
-            id: this.stateFork.profilePage.posts.length + 1,
-            message: this.stateFork.profilePage.textArea,
+            id: this._stateFork.profilePage.posts.length + 1,
+            message: this._stateFork.profilePage.textArea,
             likeCounts: 0,
         };
-        this.stateFork.profilePage.posts.push(newPost);
-        this.stateFork.profilePage.textArea = '';
-        this.reRenderThree(this);
+        this._stateFork.profilePage.posts.push(newPost);
+        this._stateFork.profilePage.textArea = '';
+        this._callSubscriber(this);
     },
 
     pushDataToState(textAreaValue) {
-        this.stateFork.profilePage.textArea = textAreaValue;
-        this.reRenderThree(this);
+        this._stateFork.profilePage.textArea = textAreaValue;
+        this._callSubscriber(this);
     },
 
     subscribe(observe) {
-        this.reRenderThree = observe;
+        this._callSubscriber = observe;
     },
 };
 
-for (let key in store) {
-  if (typeof store[key] === 'function') {
-    store[key] = store[key].bind(store);
-  }
-}
+// for (let key in store) {
+//     if (typeof store[key] === 'function') {
+//         store[key] = store[key].bind(store);
+//     }
+// }
 
 window.store = store;
 

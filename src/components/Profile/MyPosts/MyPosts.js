@@ -5,13 +5,13 @@ import PostItem from "./PostItem/PostItem";
 const MyPosts = (props) => {
     const {posts, addPost, pushDataToState, textArea} = props;
     const textAreaRef = React.createRef();
+    const pushDataToStateLocal = () => {
+        pushDataToState(textAreaRef.current.value);
+    };
     const addPostLocal = () => {
         if (textArea) {
             addPost();
         }
-    };
-    const pushDataToStateLocal = () => {
-        pushDataToState(textAreaRef.current.value);
     };
     return (
         <div className={styles.post}>
@@ -24,7 +24,7 @@ const MyPosts = (props) => {
             </div>
             {posts.map((item) => {
                 return (
-                    <PostItem key={item.message} message={item.message} likeCounts={item.likeCounts}/>
+                    <PostItem key={item.id} message={item.message} likeCounts={item.likeCounts}/>
                 )
             })}
         </div>

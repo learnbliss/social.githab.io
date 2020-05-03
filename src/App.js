@@ -13,27 +13,27 @@ function App(props) {
     // const {addPost, pushDataToState, addMessage, pushDataToStateDialog} = props;
     // const {posts,} = props.stateFork.profilePage;
     // const {messages, dialogs,} = props.stateFork.messagesPage;
-    const {store} = props;
+    const {state, addMessage, pushDataToStateDialog, addPost, pushDataToState,} = props;
     return (
         <div className="App">
             <Header/>
-            <NavBar dialogs={store.stateFork.messagesPage.dialogs}/>
+            <NavBar dialogs={state.messagesPage.dialogs}/>
             <div className="app-wrapper-content">
                 <Route path='/dialogs' render={() => {
                     return <Dialogs
-                        dialogs={store.stateFork.messagesPage.dialogs}
-                        messages={store.stateFork.messagesPage.messages}
-                        textArea={store.stateFork.messagesPage.textArea}
-                        addMessage={store.addMessage}
-                        pushDataToStateDialog={store.pushDataToStateDialog}
+                        dialogs={state.messagesPage.dialogs}
+                        messages={state.messagesPage.messages}
+                        textArea={state.messagesPage.textArea}
+                        addMessage={addMessage}
+                        pushDataToStateDialog={pushDataToStateDialog}
                     />
                 }}/>
                 <Route path='/profile' render={() => {
                     return <Profile
-                        posts={store.stateFork.profilePage.posts}
-                        addPost={store.addPost}
-                        pushDataToState={store.pushDataToState}
-                        textArea={store.stateFork.profilePage.textArea}/>
+                        posts={state.profilePage.posts}
+                        addPost={addPost}
+                        pushDataToState={pushDataToState}
+                        textArea={state.profilePage.textArea}/>
                 }}/>
                 <Route path='/news' render={() => {
                     return <News/>

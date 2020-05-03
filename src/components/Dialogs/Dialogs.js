@@ -29,7 +29,7 @@ const Dialogs = props => {
                 <button onClick={addMessageLocal} style={{justifySelf: 'start'}}>add post</button>
                 {messages.map((item) => {
                     return (
-                        <Message key={item.message} message={item.message}/>
+                        <Message key={item.id} message={item.message}/>
                     )
                 })}
             </div>
