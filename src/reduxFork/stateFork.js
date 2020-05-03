@@ -1,4 +1,6 @@
-import renderThree from "../render";
+export let reRenderThree = () => {
+    console.log('state changed')
+};
 
 let stateFork = {
     profilePage: {
@@ -43,13 +45,13 @@ window.stateFork = stateFork;
 export const addMessage = () => {
     let {messages, textArea} = stateFork.messagesPage;
     messages.push({message: textArea,});
-    renderThree(stateFork);
+    reRenderThree(stateFork);
     textArea = '';
 };
 
 export const pushDataToStateDialog = (textAreaValue) => {
     stateFork.messagesPage.textArea = textAreaValue;
-    renderThree(stateFork);
+    reRenderThree(stateFork);
 };
 
 export const addPost = () => {
@@ -61,12 +63,16 @@ export const addPost = () => {
     };
     arr.push(newPost);
     stateFork.profilePage.textArea = '';
-    renderThree(stateFork);
+    reRenderThree(stateFork);
 };
 
 export const pushDataToState = (textAreaValue) => {
     stateFork.profilePage.textArea = textAreaValue;
-    renderThree(stateFork);
+    reRenderThree(stateFork);
+};
+
+export const subscribe = (observe) => {
+    reRenderThree = observe;
 };
 
 export default stateFork;
