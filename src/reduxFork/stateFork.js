@@ -6,7 +6,7 @@
  */
 
 let store = {
-    reRenderThree: () => {
+    reRenderThree() {
         console.log('state changed')
     },
     stateFork: {
@@ -47,20 +47,19 @@ let store = {
         },
     },
 
-    addMessage: () => {
+    addMessage() {
         let {messages, textArea} = this.stateFork.messagesPage;
         messages.push({message: textArea,});
         this.reRenderThree(this); //reRenderThree(stateFork);
         textArea = '';
     },
 
-    pushDataToStateDialog: (textAreaValue) => {
-        console.log('this: ', this);
+    pushDataToStateDialog(textAreaValue) {
         this.stateFork.messagesPage.textArea = textAreaValue;
         this.reRenderThree(this); //reRenderThree(stateFork);
     },
 
-    addPost: () => {
+    addPost() {
         let newPost = {
             id: this.stateFork.profilePage.posts.length + 1,
             message: this.stateFork.profilePage.textArea,
@@ -71,15 +70,21 @@ let store = {
         this.reRenderThree(this);
     },
 
-    pushDataToState: (textAreaValue) => {
+    pushDataToState(textAreaValue) {
         this.stateFork.profilePage.textArea = textAreaValue;
         this.reRenderThree(this);
     },
 
-    subscribe: (observe) => {
+    subscribe(observe) {
         this.reRenderThree = observe;
     },
 };
+
+for (let key in store) {
+  if (typeof store[key] === 'function') {
+    store[key] = store[key].bind(store);
+  }
+}
 
 window.store = store;
 

@@ -25,14 +25,14 @@ function App(props) {
                         messages={store.stateFork.messagesPage.messages}
                         textArea={store.stateFork.messagesPage.textArea}
                         addMessage={store.addMessage}
-                        pushDataToStateDialog={store.pushDataToStateDialog()}
+                        pushDataToStateDialog={store.pushDataToStateDialog}
                     />
                 }}/>
                 <Route path='/profile' render={() => {
                     return <Profile
                         posts={store.stateFork.profilePage.posts}
                         addPost={store.addPost}
-                        pushDataToState={store.pushDataToState()}
+                        pushDataToState={store.pushDataToState}
                         textArea={store.stateFork.profilePage.textArea}/>
                 }}/>
                 <Route path='/news' render={() => {
