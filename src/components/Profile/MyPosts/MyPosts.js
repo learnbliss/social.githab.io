@@ -3,18 +3,21 @@ import styles from './MyPosts.module.scss'
 import PostItem from "./PostItem/PostItem";
 
 const MyPosts = (props) => {
-    const {posts, addPost} = props;
+    const {posts, addPost, pushDataToState, textArea} = props;
     const textAreaRef = React.createRef();
     const addPostLocal = () => {
-        console.log('new post: ', textAreaRef.current.value);
-        addPost(textAreaRef.current.value);
-        textAreaRef.current.value = '';
+        if (textArea) {
+            addPost();
+        }
+    };
+    const pushDataToStateLocal = () => {
+        pushDataToState(textAreaRef.current.value);
     };
     return (
         <div className={styles.post}>
             <h3>my post</h3>
             <div>
-                <textarea ref={textAreaRef}/>
+                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToStateLocal}/>
             </div>
             <div>
                 <button onClick={addPostLocal}>add post</button>

@@ -4,11 +4,17 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 const Dialogs = props => {
-    const {dialogs, messages,} = props;
+    const {dialogs, messages, textArea, addMessage, pushDataToStateDialog} = props;
     const textAreaRef = React.createRef();
-    const addPost = () => {
-        console.log('new post: ', textAreaRef.current.value)
+    const pushDataToStateDialogLocal = () => {
+        pushDataToStateDialog(textAreaRef.current.value)
     };
+    const addMessageLocal = () => {
+        if (textArea) {
+            addMessage()
+        }
+    };
+
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogItems}>
@@ -19,8 +25,8 @@ const Dialogs = props => {
                 })}
             </div>
             <div className={styles.messageItems}>
-                <textarea ref={textAreaRef}/>
-                <button onClick={addPost} style={{justifySelf: 'start'}}>add post</button>
+                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToStateDialogLocal}/>
+                <button onClick={addMessageLocal} style={{justifySelf: 'start'}}>add post</button>
                 {messages.map((item) => {
                     return (
                         <Message key={item.message} message={item.message}/>

@@ -10,7 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 function App(props) {
-    const {addPost} = props;
+    const {addPost, pushDataToState, addMessage, pushDataToStateDialog} = props;
     const {posts,} = props.stateFork.profilePage;
     const {messages, dialogs,} = props.stateFork.messagesPage;
     return (
@@ -19,10 +19,20 @@ function App(props) {
             <NavBar dialogs={dialogs}/>
             <div className="app-wrapper-content">
                 <Route path='/dialogs' render={() => {
-                    return <Dialogs dialogs={dialogs} messages={messages}/>
+                    return <Dialogs
+                        dialogs={dialogs}
+                        messages={messages}
+                        textArea={props.stateFork.messagesPage.textArea}
+                        addMessage={addMessage}
+                        pushDataToStateDialog={pushDataToStateDialog}
+                    />
                 }}/>
                 <Route path='/profile' render={() => {
-                    return <Profile posts={posts} addPost={addPost}/>
+                    return <Profile
+                        posts={posts}
+                        addPost={addPost}
+                        pushDataToState={pushDataToState}
+                        textArea={props.stateFork.profilePage.textArea}/>
                 }}/>
                 <Route path='/news' render={() => {
                     return <News/>

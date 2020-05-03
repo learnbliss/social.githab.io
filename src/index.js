@@ -1,4 +1,3 @@
-import React from 'react';
 import * as serviceWorker from './serviceWorker';
 import renderThree from "./render";
 import state from './reduxFork/stateFork'

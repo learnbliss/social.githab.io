@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
   padding: 1rem;
+  align-items: start;
 }
 
 .dialogItems,
@@ -10,8 +11,4 @@
   display: grid;
   grid-gap: 1rem;
   margin: 0 1rem;
-}
-
-.messageItems {
-  align-content: start;
 }
