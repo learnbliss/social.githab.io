@@ -2,9 +2,8 @@ import ReactDOM from "react-dom";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {addMessage, addPost, pushDataToState, pushDataToStateDialog} from "./reduxFork/stateFork";
+import store from "./reduxFork/stateFork";
 import './index.css';
-import stateFork, {subscribe} from "./reduxFork/stateFork";
 import * as serviceWorker from './serviceWorker';
 
 const reRenderThree = (state) => {
@@ -12,11 +11,7 @@ const reRenderThree = (state) => {
         <React.StrictMode>
             <BrowserRouter>
                 <App
-                    stateFork={state}
-                    addPost={addPost}
-                    pushDataToState={pushDataToState}
-                    addMessage={addMessage}
-                    pushDataToStateDialog={pushDataToStateDialog}
+                    store={store}
                 />
             </BrowserRouter>
         </React.StrictMode>,
@@ -24,9 +19,9 @@ const reRenderThree = (state) => {
     );
 };
 
-reRenderThree(stateFork);
+reRenderThree(store.stateFork);
 
-subscribe(reRenderThree);
+store.subscribe(reRenderThree);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
