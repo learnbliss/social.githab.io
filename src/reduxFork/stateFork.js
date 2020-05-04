@@ -50,37 +50,32 @@ let store = {
     getState() {
         return this._stateFork
     },
-
-    addMessage() {
-        let {messages, textArea} = this._stateFork.messagesPage;
-        messages.push({id: messages.length + 1, message: textArea,});
-        this._stateFork.messagesPage.textArea = '';
-        this._callSubscriber(this);
-    },
-
-    pushDataToStateDialog(textAreaValue) {
-        this._stateFork.messagesPage.textArea = textAreaValue;
-        this._callSubscriber(this);
-    },
-
-    addPost() {
-        let newPost = {
-            id: this._stateFork.profilePage.posts.length + 1,
-            message: this._stateFork.profilePage.textArea,
-            likeCounts: 0,
-        };
-        this._stateFork.profilePage.posts.push(newPost);
-        this._stateFork.profilePage.textArea = '';
-        this._callSubscriber(this);
-    },
-
-    pushDataToState(textAreaValue) {
-        this._stateFork.profilePage.textArea = textAreaValue;
-        this._callSubscriber(this);
-    },
-
     subscribe(observe) {
         this._callSubscriber = observe;
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD_POST_PROFILE') {
+            let newPost = {
+                id: this._stateFork.profilePage.posts.length + 1,
+                message: this._stateFork.profilePage.textArea,
+                likeCounts: 0,
+            };
+            this._stateFork.profilePage.posts.push(newPost);
+            this._stateFork.profilePage.textArea = '';
+            this._callSubscriber(this);
+        } else if (action.type === 'PUSH_DATA_TO_STATE_PROFILE') {
+            this._stateFork.profilePage.textArea = action.payload.textAreaValue;
+            this._callSubscriber(this);
+        } else if (action.type === 'ADD_MESSAGE_DIALOG') {
+            let {messages, textArea} = this._stateFork.messagesPage;
+            messages.push({id: messages.length + 1, message: textArea,});
+            this._stateFork.messagesPage.textArea = '';
+            this._callSubscriber(this);
+        } else if (action.type === 'PUSH_DATA_TO_STATE_DIALOG') {
+            this._stateFork.messagesPage.textArea = action.payload.textAreaValue;
+            this._callSubscriber(this);
+        }
     },
 };
 

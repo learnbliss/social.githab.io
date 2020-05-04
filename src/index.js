@@ -12,10 +12,7 @@ const reRenderThree = (state) => {
             <BrowserRouter>
                 <App
                     state={store.getState()}
-                    addMessage={store.addMessage.bind(store)}
-                    pushDataToStateDialog={store.pushDataToStateDialog.bind(store)}
-                    addPost={store.addPost.bind(store)}
-                    pushDataToState={store.pushDataToState.bind(store)}
+                    dispatch={store.dispatch.bind(store)}
                 />
             </BrowserRouter>
         </React.StrictMode>,

@@ -13,7 +13,7 @@ function App(props) {
     // const {addPost, pushDataToState, addMessage, pushDataToStateDialog} = props;
     // const {posts,} = props.stateFork.profilePage;
     // const {messages, dialogs,} = props.stateFork.messagesPage;
-    const {state, addMessage, pushDataToStateDialog, addPost, pushDataToState,} = props;
+    const {state, dispatch} = props;
     return (
         <div className="App">
             <Header/>
@@ -24,15 +24,13 @@ function App(props) {
                         dialogs={state.messagesPage.dialogs}
                         messages={state.messagesPage.messages}
                         textArea={state.messagesPage.textArea}
-                        addMessage={addMessage}
-                        pushDataToStateDialog={pushDataToStateDialog}
+                        dispatch={dispatch}
                     />
                 }}/>
                 <Route path='/profile' render={() => {
                     return <Profile
                         posts={state.profilePage.posts}
-                        addPost={addPost}
-                        pushDataToState={pushDataToState}
+                        dispatch={dispatch}
                         textArea={state.profilePage.textArea}/>
                 }}/>
                 <Route path='/news' render={() => {

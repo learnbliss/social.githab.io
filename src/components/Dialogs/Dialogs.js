@@ -4,14 +4,21 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 const Dialogs = props => {
-    const {dialogs, messages, textArea, addMessage, pushDataToStateDialog} = props;
+    const {dialogs, messages, textArea, dispatch,} = props;
     const textAreaRef = React.createRef();
-    const pushDataToStateDialogLocal = () => {
-        pushDataToStateDialog(textAreaRef.current.value)
+    const pushDataToStateDialog = () => {
+        dispatch({
+            type: 'PUSH_DATA_TO_STATE_DIALOG',
+            payload: {
+                textAreaValue: textAreaRef.current.value,
+            },
+        })
     };
-    const addMessageLocal = () => {
+    const addMessage = () => {
         if (textArea) {
-            addMessage()
+            dispatch({
+                type: 'ADD_MESSAGE_DIALOG',
+            })
         }
     };
 
@@ -25,8 +32,8 @@ const Dialogs = props => {
                 })}
             </div>
             <div className={styles.messageItems}>
-                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToStateDialogLocal}/>
-                <button onClick={addMessageLocal} style={{justifySelf: 'start'}}>add post</button>
+                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToStateDialog}/>
+                <button onClick={addMessage} style={{justifySelf: 'start'}}>add post</button>
                 {messages.map((item) => {
                     return (
                         <Message key={item.id} message={item.message}/>

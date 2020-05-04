@@ -3,24 +3,32 @@ import styles from './MyPosts.module.scss'
 import PostItem from "./PostItem/PostItem";
 
 const MyPosts = (props) => {
-    const {posts, addPost, pushDataToState, textArea} = props;
+    const {posts, dispatch, textArea} = props;
     const textAreaRef = React.createRef();
-    const pushDataToStateLocal = () => {
-        pushDataToState(textAreaRef.current.value);
+    const pushDataToState = () => {
+        dispatch({
+            type: 'PUSH_DATA_TO_STATE_PROFILE',
+            payload: {
+                textAreaValue: textAreaRef.current.value,
+            },
+        })
     };
-    const addPostLocal = () => {
+    const addPost = () => {
         if (textArea) {
-            addPost();
+            dispatch({
+                type: 'ADD_POST_PROFILE',
+
+            })
         }
     };
     return (
         <div className={styles.post}>
             <h3>my post</h3>
             <div>
-                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToStateLocal}/>
+                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToState}/>
             </div>
             <div>
-                <button onClick={addPostLocal}>add post</button>
+                <button onClick={addPost}>add post</button>
             </div>
             {posts.map((item) => {
                 return (
