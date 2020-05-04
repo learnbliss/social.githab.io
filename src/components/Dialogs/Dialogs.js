@@ -2,23 +2,17 @@ import React from 'react';
 import styles from './Dialogs.module.scss'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {addMessageAC, pushDataToStateDialogAC} from "../../reduxFork/stateFork";
 
 const Dialogs = props => {
     const {dialogs, messages, textArea, dispatch,} = props;
     const textAreaRef = React.createRef();
     const pushDataToStateDialog = () => {
-        dispatch({
-            type: 'PUSH_DATA_TO_STATE_DIALOG',
-            payload: {
-                textAreaValue: textAreaRef.current.value,
-            },
-        })
+        dispatch(pushDataToStateDialogAC(textAreaRef))
     };
     const addMessage = () => {
         if (textArea) {
-            dispatch({
-                type: 'ADD_MESSAGE_DIALOG',
-            })
+            dispatch(addMessageAC())
         }
     };
 

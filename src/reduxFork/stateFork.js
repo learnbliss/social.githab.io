@@ -1,9 +1,33 @@
-/*todo
-Упаковать весь state в объект store с методами
-Экспортировать store
-в index.js в компоненту <App> передать весь store и методы
-далее вызывать только необходимые данные или функции
- */
+export const pushDataToStateDialogAC = (textAreaRef) => {
+    return {
+        type: 'PUSH_DATA_TO_STATE_DIALOG',
+        payload: {
+            textAreaValue: textAreaRef.current.value,
+        },
+    }
+};
+
+export const addMessageAC = () => {
+    return {
+        type: 'ADD_MESSAGE_DIALOG',
+    }
+};
+
+export const pushDataToStateProFileAC = (textAreaRef) => {
+    return {
+        type: 'PUSH_DATA_TO_STATE_PROFILE',
+        payload: {
+            textAreaValue: textAreaRef.current.value,
+        },
+    }
+};
+
+export const addPostAC = () => {
+    return {
+        type: 'ADD_POST_PROFILE',
+
+    }
+};
 
 let store = {
     _callSubscriber() {

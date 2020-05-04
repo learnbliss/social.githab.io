@@ -1,24 +1,17 @@
 import React from 'react';
 import styles from './MyPosts.module.scss'
 import PostItem from "./PostItem/PostItem";
+import {addPostAC, pushDataToStateProFileAC} from "../../../reduxFork/stateFork";
 
 const MyPosts = (props) => {
     const {posts, dispatch, textArea} = props;
     const textAreaRef = React.createRef();
     const pushDataToState = () => {
-        dispatch({
-            type: 'PUSH_DATA_TO_STATE_PROFILE',
-            payload: {
-                textAreaValue: textAreaRef.current.value,
-            },
-        })
+        dispatch(pushDataToStateProFileAC(textAreaRef))
     };
     const addPost = () => {
         if (textArea) {
-            dispatch({
-                type: 'ADD_POST_PROFILE',
-
-            })
+            dispatch(addPostAC())
         }
     };
     return (
