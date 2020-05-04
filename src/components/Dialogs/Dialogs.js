@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Dialogs.module.scss'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageAC, pushDataToStateDialogAC} from "../../reduxFork/stateFork";
+import {addMessageAC, pushDataToStateDialogAC} from "../../reduxFork/messagesReducer";
 
 const Dialogs = props => {
     const {dialogs, messages, textArea, dispatch,} = props;

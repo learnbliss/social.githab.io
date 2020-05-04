@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './MyPosts.module.scss'
 import PostItem from "./PostItem/PostItem";
-import {addPostAC, pushDataToStateProFileAC} from "../../../reduxFork/stateFork";
+import {addPostAC, pushDataToStateProFileAC} from "../../../reduxFork/profileReducer";
 
 const MyPosts = (props) => {
     const {posts, dispatch, textArea} = props;
