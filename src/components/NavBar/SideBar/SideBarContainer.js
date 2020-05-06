@@ -1,10 +1,16 @@
 import React from 'react';
 import SideBar from "./SideBar";
+import ContextStore from "../../../ContextStore";
 
 const SideBarContainer = props => {
-    const {dialogs} = props.store.getState().messagesPage;
     return (
-        <SideBar dialogs={dialogs}/>
+        <ContextStore.Consumer>
+            {(store) => {
+                return(
+                    <SideBar dialogs={store.getState().messagesPage.dialogs}/>
+                )
+            }}
+        </ContextStore.Consumer>
     );
 };
 

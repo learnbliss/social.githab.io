@@ -10,20 +10,16 @@ import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 function App(props) {
-    const {state, dispatch} = props;
     return (
         <div className="App">
             <Header/>
-            <NavBar store={props.store}/>
+            <NavBar/>
             <div className="app-wrapper-content">
                 <Route path='/dialogs' render={() => {
-                    return <DialogsContainer
-                        store={props.store}
-                    />
+                    return <DialogsContainer/>
                 }}/>
                 <Route path='/profile' render={() => {
-                    return <Profile
-                        store={props.store}/>
+                    return <Profile/>
                 }}/>
                 <Route path='/news' render={() => {
                     return <News/>

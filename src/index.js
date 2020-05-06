@@ -5,14 +5,15 @@ import App from "./App";
 import store from "./redux/redux";
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import ContextStore from "./ContextStore";
 
 const reRenderThree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App
-                    store={store}
-                />
+                <ContextStore.Provider value={store}>
+                    <App/>
+                </ContextStore.Provider>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
