@@ -44,11 +44,11 @@ const messagesReducer = (state = initialState, action) => {
     }
 };
 
-export const pushDataToStateDialogAC = (textAreaRef) => {
+export const pushDataToStateDialogAC = (text) => {
     return {
         type: PUSH_DATA_TO_STATE_DIALOG,
         payload: {
-            textAreaValue: textAreaRef.current.value,
+            textAreaValue: text,
         },
     }
 };

@@ -3,35 +3,27 @@ import './App.scss';
 import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 function App(props) {
-    // const {addPost, pushDataToState, addMessage, pushDataToStateDialog} = props;
-    // const {posts,} = props.stateFork.profilePage;
-    // const {messages, dialogs,} = props.stateFork.messagesPage;
     const {state, dispatch} = props;
     return (
         <div className="App">
             <Header/>
-            <NavBar dialogs={state.messagesPage.dialogs}/>
+            <NavBar store={props.store}/>
             <div className="app-wrapper-content">
                 <Route path='/dialogs' render={() => {
-                    return <Dialogs
-                        dialogs={state.messagesPage.dialogs}
-                        messages={state.messagesPage.messages}
-                        textArea={state.messagesPage.textArea}
-                        dispatch={dispatch}
+                    return <DialogsContainer
+                        store={props.store}
                     />
                 }}/>
                 <Route path='/profile' render={() => {
                     return <Profile
-                        posts={state.profilePage.posts}
-                        dispatch={dispatch}
-                        textArea={state.profilePage.textArea}/>
+                        store={props.store}/>
                 }}/>
                 <Route path='/news' render={() => {
                     return <News/>

@@ -32,11 +32,11 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const pushDataToStateProFileAC = (textAreaRef) => {
+export const pushDataToStateProFileAC = (text) => {
     return {
         type: PUSH_DATA_TO_STATE_PROFILE,
         payload: {
-            textAreaValue: textAreaRef.current.value,
+            textAreaValue: text,
         },
     }
 };

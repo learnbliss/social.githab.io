@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './NavBar.module.scss'
 import {NavLink} from "react-router-dom";
 import SideBar from "./SideBar/SideBar";
+import SideBarContainer from "./SideBar/SideBarContainer";
 
 const NavBar = (props) => {
-    const {dialogs} = props;
     return (
         <nav className={styles.nav}>
             <ul>
@@ -16,7 +16,7 @@ const NavBar = (props) => {
             </ul>
             <div className={styles.sideBar}>
                 <span>Friends</span>
-                <SideBar dialogs={dialogs}/>
+                <SideBarContainer store={props.store}/>
             </div>
         </nav>
     );

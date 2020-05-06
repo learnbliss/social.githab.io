@@ -1,24 +1,22 @@
 import React from 'react';
 import styles from './MyPosts.module.scss'
 import PostItem from "./PostItem/PostItem";
-import {addPostAC, pushDataToStateProFileAC} from "../../../reduxFork/profileReducer";
 
 const MyPosts = (props) => {
-    const {posts, dispatch, textArea} = props;
-    const textAreaRef = React.createRef();
-    const pushDataToState = () => {
-        dispatch(pushDataToStateProFileAC(textAreaRef))
+    const {posts, textArea} = props;
+    const pushPost = (e) => {
+        props.pushDataToStatePost(e.target.value);
     };
     const addPost = () => {
         if (textArea) {
-            dispatch(addPostAC())
+            props.addPost();
         }
     };
     return (
         <div className={styles.post}>
             <h3>my post</h3>
             <div>
-                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToState}/>
+                <textarea value={textArea} onChange={pushPost}/>
             </div>
             <div>
                 <button onClick={addPost}>add post</button>

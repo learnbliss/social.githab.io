@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './Profile.module.scss'
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import MyPostContainer from "./MyPosts/MyPostContainer";
 
 const Profile = (props) => {
-    const {posts, dispatch, textArea} = props;
+    const {store} = props;
     return (
         <div className={styles.content}>
             <ProfileInfo/>
-            <MyPosts posts={posts} dispatch={dispatch} textArea={textArea}/>
+            <MyPostContainer store={store}/>
         </div>
     );
 };

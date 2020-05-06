@@ -2,17 +2,15 @@ import React from 'react';
 import styles from './Dialogs.module.scss'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageAC, pushDataToStateDialogAC} from "../../reduxFork/messagesReducer";
 
 const Dialogs = props => {
-    const {dialogs, messages, textArea, dispatch,} = props;
-    const textAreaRef = React.createRef();
-    const pushDataToStateDialog = () => {
-        dispatch(pushDataToStateDialogAC(textAreaRef))
+    const {dialogs, messages, textArea} = props;
+    const pushDialog = (e) => {
+        props.pushDataToStateDialog(e.target.value)
     };
     const addMessage = () => {
         if (textArea) {
-            dispatch(addMessageAC())
+            props.addMessage()
         }
     };
 
@@ -26,7 +24,7 @@ const Dialogs = props => {
                 })}
             </div>
             <div className={styles.messageItems}>
-                <textarea ref={textAreaRef} value={textArea} onChange={pushDataToStateDialog}/>
+                <textarea value={textArea} onChange={pushDialog}/>
                 <button onClick={addMessage} style={{justifySelf: 'start'}}>add post</button>
                 {messages.map((item) => {
                     return (
