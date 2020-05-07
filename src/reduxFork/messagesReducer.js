@@ -27,18 +27,25 @@ let initialState = {
         },
     ],
     textArea: '',
-}
+};
 
 const messagesReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_MESSAGE_DIALOG:
-            state.messages.push({id: state.messages.length + 1, message: state.textArea,});
-            state.textArea = '';
-            return state;
-        case PUSH_DATA_TO_STATE_DIALOG:
-            state.textArea = action.payload.textAreaValue;
-            return state;
+        case ADD_MESSAGE_DIALOG: {
+            let newMessage = {id: state.messages.length + 1, message: state.textArea,};
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
+                textArea: '',
+            }
+        }
+        case PUSH_DATA_TO_STATE_DIALOG: {
+            return {
+                ...state,
+                textArea: action.payload.textAreaValue,
+            }
+        }
         default:
             return state
     }

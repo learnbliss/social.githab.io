@@ -20,13 +20,17 @@ const profileReducer = (state = initialState, action) => {
                 message: state.textArea,
                 likeCounts: 0,
             };
-            state.posts.push(newPost);
-            state.textArea = '';
-            return state;
-
-        case PUSH_DATA_TO_STATE_PROFILE:
-            state.textArea = action.payload.textAreaValue;
-            return state;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                textArea: '',
+            };
+        case PUSH_DATA_TO_STATE_PROFILE: {
+            return {
+                ...state,
+                textArea: action.payload.textAreaValue,
+            };
+        }
         default:
             return state
     }

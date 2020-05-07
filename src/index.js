@@ -5,9 +5,9 @@ import App from "./App";
 import store from "./redux/redux";
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import ContextStore, {Provider} from "./ContextStore";
+import {Provider} from "react-redux";
 
-const reRenderThree = (state) => {
+// const reRenderThree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -18,13 +18,13 @@ const reRenderThree = (state) => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-};
+// };
 
-reRenderThree(store.getState());
-
-store.subscribe(() => {
-    reRenderThree(store.getState())
-});
+// reRenderThree(store.getState());
+//
+// store.subscribe(() => {
+//     reRenderThree(store.getState())
+// });
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
