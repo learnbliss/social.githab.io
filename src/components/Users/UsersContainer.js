@@ -5,7 +5,7 @@ import {followAC, setUsersAC, unfollowAC} from "../../reducers/UsersReducer";
 const mapStateToProps = (state) => {
     return {
         users: state.userPage.users,
-        fallowed: state.userPage.fallowed,
+        followed: state.userPage.followed,
     }
 };
 
