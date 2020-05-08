@@ -1,5 +1,5 @@
 import React from 'react';
-import contentHeadImg from "../../../img/Sapa-terraces.jpg";
+import contentHeadImg from "../../../assets/img/Sapa-terraces.jpg";
 import styles from './ProfileInfo.module.scss'
 
 const ProfileInfo = props => {
