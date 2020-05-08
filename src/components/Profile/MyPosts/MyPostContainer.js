@@ -1,6 +1,6 @@
 // import React from 'react';
 import MyPosts from "./MyPosts";
-import {addPostAC, pushDataToStateProFileAC} from "../../../reduxFork/profileReducer";
+import {addPostAC, pushDataToStateProFileAC} from "../../../reducers/profileReducer";
 import {connect} from "react-redux";
 
 // const MyPostContainer = () => {

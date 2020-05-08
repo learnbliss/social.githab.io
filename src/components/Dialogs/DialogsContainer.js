@@ -1,6 +1,6 @@
 // import React from 'react';
 import Dialogs from "./Dialogs";
-import {addMessageAC, pushDataToStateDialogAC} from "../../reduxFork/messagesReducer";
+import {addMessageAC, pushDataToStateDialogAC} from "../../reducers/messagesReducer";
 import {connect} from "react-redux";
 
 // const DialogsContainer = props => {
@@ -28,7 +28,6 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
-        console: console.log('state: ', state),
         dialogs: state.messagesPage.dialogs,
         messages: state.messagesPage.messages,
         textArea: state.messagesPage.textArea,
