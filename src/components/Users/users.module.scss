@@ -18,12 +18,14 @@ $secondaryColor: #67DBF9;
 .avatar {
   display: grid;
   justify-items: center;
+
   img {
     width: 4rem;
     height: 4rem;
     object-fit: cover;
     border-radius: 50%;
   }
+
   button {
     border: 2px solid $color;
     border-radius: .5rem;
@@ -35,6 +37,7 @@ $secondaryColor: #67DBF9;
     transition: color .2s, background .3s ease-in-out;
 
   }
+
   button:hover {
     background: $secondaryColor;
     color: black;
@@ -63,4 +66,39 @@ $secondaryColor: #67DBF9;
 .status {
   align-self: end;
   font-size: .9rem;
+}
+
+.pagButtons {
+  display: grid;
+  grid-auto-flow: column;
+  justify-self: center;
+  grid-gap: 1rem;
+  align-content: center;
+  > span {
+    position: relative;
+    padding: .1rem;
+    cursor: pointer;
+    transition: color .2s, transform .2s ease-in-out;
+    user-select: none;
+  }
+  > span:hover {
+    color: $secondaryColor;
+    transform: scale(1.2) translateY(-.1rem);
+  }
+  > span.selectedPage {
+    color: $secondaryColor;
+    transform: scale(1.2) translateY(-.1rem);
+  }
+  > span.selectedPage:before {
+    position: absolute;
+    content: '';
+    width: .3rem;
+    height: .3rem;
+    border-radius: 50%;
+    background: $secondaryColor;
+    bottom: -.3rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
 }

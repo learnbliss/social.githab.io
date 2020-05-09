@@ -11,17 +11,51 @@ class Users extends React.Component {
 
     componentDidMount(): void {
         if (this.props.users.length === 0) {
-            Axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then((response) => {
-                    this.props.setUsers(response.data.items)
+                    this.props.setUsers(response.data.items);
+                    this.props.setTotalCount(response.data.totalCount);
                 });
         }
     }
 
+    onPageChanged = (page) => {
+        this.props.setCurrentPage(page);
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+            .then((response) => {
+                this.props.setUsers(response.data.items)
+            });
+    };
+
+
     render() {
+
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+
+        const getPages = () => {
+            let pages = [];
+            for (let i = 1; i <= pagesCount; i++) {
+                pages.push(i)
+            }
+            return pages
+        };
+
         return (
             <div className={styles.root}>
-                {/*{this.props.users.length === 0 ? <button onClick={this.getUsers}>get users</button> : null}*/}
+                <div className={styles.pagButtons}>
+                    {getPages().map((page) => {
+                        return <span key={page}
+                                     className={this.props.currentPage === page ? styles.selectedPage : ''}
+                                     onClick={() => {
+                                         this.onPageChanged(page)
+                                     }}>{page}</span>
+                    })}
+                    {/*<span>1</span>*/}
+                    {/*<span className={styles.selectedPage}>2</span>*/}
+                    {/*<span>3</span>*/}
+                    {/*<span>4</span>*/}
+                    {/*<span>5</span>*/}
+                </div>
                 {this.props.users.map((user) => {
                     return (
                         <div key={user.id} className={styles.wrapper}>
