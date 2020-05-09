@@ -1,11 +1,6 @@
 import React from 'react';
+import Axios from "axios";
+import Users from "./Users";
 
-const UsersApiComponent = props => {
-    return (
-        <div>
-
-        </div>
-    );
-};
 
 export default UsersApiComponent;
