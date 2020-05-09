@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Dialogs.module.scss'
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
 
 const Dialogs = props => {
     const {dialogs, messages, textArea} = props;

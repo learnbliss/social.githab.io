@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MyPosts.module.scss'
-import PostItem from "./PostItem/PostItem";
+import PostItem from './PostItem/PostItem';
 
 const MyPosts = (props) => {
     const {posts, textArea} = props;

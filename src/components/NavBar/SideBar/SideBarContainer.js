@@ -1,6 +1,6 @@
 // import React from 'react';
-import SideBar from "./SideBar";
-import {connect} from "react-redux";
+import SideBar from './SideBar';
+import {connect} from 'react-redux';
 
 // const SideBarContainer = props => {
 //     return (

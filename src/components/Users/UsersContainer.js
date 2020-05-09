@@ -1,8 +1,15 @@
-import {connect} from "react-redux";
-import {followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, unfollowAC} from "../../reducers/UsersReducer";
-import React from "react";
-import Axios from "axios";
-import Users from "./Users";
+import {connect} from 'react-redux';
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalCountAC,
+    setUsersAC,
+    toggleIsFetchingAC,
+    unfollowAC
+} from '../../reducers/UsersReducer';
+import React from 'react';
+import Axios from 'axios';
+import Users from './Users';
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -11,9 +18,11 @@ class UsersContainer extends React.Component {
     }
 
     componentDidMount(): void {
+        this.props.toggleIsFetching(true);
         if (this.props.users.length === 0) {
             Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then((response) => {
+                    this.props.toggleIsFetching(false);
                     this.props.setUsers(response.data.items);
                     this.props.setTotalCount(response.data.totalCount);
                 });
@@ -21,9 +30,11 @@ class UsersContainer extends React.Component {
     }
 
     onPageChanged = (page) => {
+        this.props.toggleIsFetching(true);
         this.props.setCurrentPage(page);
         Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
             .then((response) => {
+                this.props.toggleIsFetching(false);
                 this.props.setUsers(response.data.items)
             });
     };
@@ -36,7 +47,8 @@ class UsersContainer extends React.Component {
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
                    unfollow={this.props.unfollow}
-                   follow={this.props.follow}/>
+                   follow={this.props.follow}
+                   isFetching={this.props.isFetching}/>
         );
     }
 }
@@ -48,6 +60,7 @@ const mapStateToProps = (state) => {
         pageSize: state.userPage.pageSize,
         totalUsersCount: state.userPage.totalUsersCount,
         currentPage: state.userPage.currentPage,
+        isFetching: state.userPage.isFetching,
     }
 };
 
@@ -68,6 +81,9 @@ const mapDispatchToProps = (dispatch) => {
         setTotalCount: (totalCount) => {
             dispatch(setTotalCountAC(totalCount))
         },
+        toggleIsFetching: (isFetching) => {
+            dispatch(toggleIsFetchingAC(isFetching))
+        }
     }
 };
 

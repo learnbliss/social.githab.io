@@ -1,7 +1,7 @@
 // import React from 'react';
-import Dialogs from "./Dialogs";
-import {addMessageAC, pushDataToStateDialogAC} from "../../reducers/messagesReducer";
-import {connect} from "react-redux";
+import Dialogs from './Dialogs';
+import {addMessageAC, pushDataToStateDialogAC} from '../../reducers/messagesReducer';
+import {connect} from 'react-redux';
 
 // const DialogsContainer = props => {
 //     return (
