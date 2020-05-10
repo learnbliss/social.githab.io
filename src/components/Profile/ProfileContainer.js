@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import Axios from "axios";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {setUserProfileAC} from "../../reducers/profileReducer";
 import {withRouter} from "react-router-dom";
+import API from "../../api/api";
 
 class ProfileContainer extends Component {
 
     componentDidMount(): void {
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id || 2}`)
-            .then(response => {
-                this.props.setUserProfileAC(response.data)
+            API.getProfile(this.props.match.params.id).then(data => {
+                this.props.setUserProfileAC(data)
             })
     }
 

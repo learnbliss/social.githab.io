@@ -8,8 +8,8 @@ import {
     unfollowAC
 } from '../../reducers/UsersReducer';
 import React from 'react';
-import Axios from 'axios';
 import Users from './Users';
+import API from "../../api/api";
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -20,26 +20,20 @@ class UsersContainer extends React.Component {
     componentDidMount(): void {
         this.props.toggleIsFetchingAC(true);
         if (this.props.users.length === 0) {
-            Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-                withCredentials: true,
-            })
-                .then((response) => {
-                    this.props.toggleIsFetchingAC(false);
-                    this.props.setUsersAC(response.data.items);
-                    this.props.setTotalCountAC(response.data.totalCount);
-                });
+            API.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+                this.props.toggleIsFetchingAC(false);
+                this.props.setUsersAC(data.items);
+                this.props.setTotalCountAC(data.totalCount);
+            });
         }
     }
 
     onPageChanged = (page) => {
         this.props.toggleIsFetchingAC(true);
         this.props.setCurrentPageAC(page);
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        })
-            .then((response) => {
+       API.getUsers(page, this.props.pageSize).then((data) => {
                 this.props.toggleIsFetchingAC(false);
-                this.props.setUsersAC(response.data.items)
+                this.props.setUsersAC(data.items)
             });
     };
 
