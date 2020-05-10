@@ -20,7 +20,9 @@ class UsersContainer extends React.Component {
     componentDidMount(): void {
         this.props.toggleIsFetchingAC(true);
         if (this.props.users.length === 0) {
-            Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+                withCredentials: true,
+            })
                 .then((response) => {
                     this.props.toggleIsFetchingAC(false);
                     this.props.setUsersAC(response.data.items);
@@ -32,7 +34,9 @@ class UsersContainer extends React.Component {
     onPageChanged = (page) => {
         this.props.toggleIsFetchingAC(true);
         this.props.setCurrentPageAC(page);
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then((response) => {
                 this.props.toggleIsFetchingAC(false);
                 this.props.setUsersAC(response.data.items)
@@ -55,7 +59,6 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        console: console.log(state),
         users: state.userPage.users,
         pageSize: state.userPage.pageSize,
         totalUsersCount: state.userPage.totalUsersCount,

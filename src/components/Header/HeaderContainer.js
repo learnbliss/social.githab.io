@@ -12,7 +12,6 @@ class HeaderContainer extends Component {
             withCredentials: true,
         })
             .then(response => {
-                console.log('response: ', response);
                 if (response.data.resultCode === 0) {
                     const {id, email, login} = response.data.data;
                     this.props.setAuthUserDataAC(id, email, login)
@@ -29,7 +28,6 @@ class HeaderContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        console: console.log('state: ', state),
         login: state.auth.login,
         isAuth: state.auth.isAuth,
         isFetching: state.auth.isFetching,
