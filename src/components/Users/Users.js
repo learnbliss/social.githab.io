@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './users.module.scss';
 import defaultAvatar from '../../assets/img/UT8o1ZTXytaXXagOFbXf.jpg';
 import Preloader from "../Preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 const Users = props => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -30,9 +31,12 @@ const Users = props => {
                     return (
                         <div key={user.id} className={styles.wrapper}>
                             <div className={styles.avatar}>
-                                <div><img
-                                    src={user.photos.small !== null ? user.photos.small : defaultAvatar}
-                                    alt='avatar'/>
+                                <div>
+                                    <NavLink to={`/profile/${user.id}`}>
+                                        <img
+                                            src={user.photos.small !== null ? user.photos.small : defaultAvatar}
+                                            alt='avatar'/>
+                                    </NavLink>
                                 </div>
                                 {user.followed ?
                                     <button onClick={() => {
