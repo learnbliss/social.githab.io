@@ -19,7 +19,7 @@ function App(props) {
                 <Route path='/dialogs' render={() => {
                     return <DialogsContainer/>
                 }}/>
-                <Route path='/profile' render={() => {
+                <Route path='/profile/:id?' render={() => {
                     return <ProfileContainer/>
                 }}/>
                 <Route path='/users' render={() => {

@@ -11,7 +11,7 @@ const ProfileInfo = props => {
     return (
         <div>
             <div>
-                <img src={contentHeadImg} alt={'logo'}/>
+                <img className={styles.background} src={contentHeadImg} alt={'logo'}/>
             </div>
             <div className={styles.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={'avatar'}/>

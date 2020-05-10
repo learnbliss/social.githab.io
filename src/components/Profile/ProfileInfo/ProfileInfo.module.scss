@@ -3,10 +3,19 @@
   grid-template-columns: 1fr 1fr;
   padding: 1rem;
   grid-gap: 2rem;
+
   > img {
     object-fit: contain;
     max-height: unset;
   }
+}
+
+.background {
+  height: auto;
+  max-height: 18rem;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 3px 3px 0 0;
 }
 
 .description {
