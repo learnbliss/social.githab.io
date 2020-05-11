@@ -1,11 +1,8 @@
 import {connect} from 'react-redux';
-import {
-    followAC, followingInProgressAC, followThunk, getUsersThunk,
-    setCurrentPageAC,
-    unfollowAC, unfollowThunk
-} from '../../reducers/UsersReducer';
+import {followThunk, getUsersThunk, unfollowThunk} from '../../reducers/UsersReducer';
 import React from 'react';
 import Users from './Users';
+import {widthAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -87,10 +84,10 @@ const mapStateToProps = (state) => {
 //     }
 // };
 
-export default connect(mapStateToProps,
+export default widthAuthRedirect(connect(mapStateToProps,
     {
         getUsersThunk,
         followThunk,
         unfollowThunk,
     }
-)(UsersContainer);
+)(UsersContainer));

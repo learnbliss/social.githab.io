@@ -31,7 +31,6 @@ const mapStateToProps = (state) => {
         dialogs: state.messagesPage.dialogs,
         messages: state.messagesPage.messages,
         textArea: state.messagesPage.textArea,
-        isAuth: state.auth.isAuth,
     }
 };
 
