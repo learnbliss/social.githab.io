@@ -1,15 +1,11 @@
 import {connect} from 'react-redux';
 import {
-    followAC, followingInProgressAC,
+    followAC, followingInProgressAC, followThunk, getUsersThunk,
     setCurrentPageAC,
-    setTotalCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC
+    unfollowAC, unfollowThunk
 } from '../../reducers/UsersReducer';
 import React from 'react';
 import Users from './Users';
-import API from "../../api/api";
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -18,23 +14,25 @@ class UsersContainer extends React.Component {
     }
 
     componentDidMount(): void {
-        this.props.toggleIsFetchingAC(true);
-        if (this.props.users.length === 0) {
-            API.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-                this.props.toggleIsFetchingAC(false);
-                this.props.setUsersAC(data.items);
-                this.props.setTotalCountAC(data.totalCount);
-            });
-        }
+        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
+        // this.props.toggleIsFetchingAC(true);
+        // if (this.props.users.length === 0) {
+        //     API.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+        //         this.props.toggleIsFetchingAC(false);
+        //         this.props.setUsersAC(data.items);
+        //         this.props.setTotalCountAC(data.totalCount);
+        //     });
+        // }
     }
 
     onPageChanged = (page) => {
-        this.props.toggleIsFetchingAC(true);
-        this.props.setCurrentPageAC(page);
-        API.getUsers(page, this.props.pageSize).then((data) => {
-            this.props.toggleIsFetchingAC(false);
-            this.props.setUsersAC(data.items)
-        });
+        this.props.getUsersThunk(page, this.props.pageSize)
+        // this.props.toggleIsFetchingAC(true);
+        // this.props.setCurrentPageAC(page);
+        // API.getUsers(page, this.props.pageSize).then((data) => {
+        //     this.props.toggleIsFetchingAC(false);
+        //     this.props.setUsersAC(data.items)
+        // });
     };
 
     render() {
@@ -44,11 +42,13 @@ class UsersContainer extends React.Component {
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
-                   unfollow={this.props.unfollowAC}
-                   follow={this.props.followAC}
-                   isFetching={this.props.isFetching}
+                   // unfollow={this.props.unfollowAC}
+                   // follow={this.props.followAC}
+                   // isFetching={this.props.isFetching}
+                // followingInProgressAC={this.props.followingInProgressAC}
                    followingInProgress={this.props.followingInProgress}
-                   followingInProgressAC={this.props.followingInProgressAC}/>
+                   followThunk={this.props.followThunk}
+                   unfollowThunk={this.props.unfollowThunk}/>
         );
     }
 }
@@ -89,12 +89,8 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,
     {
-        followAC,
-        unfollowAC,
-        setUsersAC,
-        setCurrentPageAC,
-        setTotalCountAC,
-        toggleIsFetchingAC,
-        followingInProgressAC,
+        getUsersThunk,
+        followThunk,
+        unfollowThunk,
     }
 )(UsersContainer);

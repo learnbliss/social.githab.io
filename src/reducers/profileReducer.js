@@ -1,3 +1,5 @@
+import API from "../api/api";
+
 const PUSH_DATA_TO_STATE_PROFILE = 'PUSH_DATA_TO_STATE_PROFILE';
 const ADD_POST_PROFILE = 'ADD_POST_PROFILE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -65,6 +67,14 @@ export const setUserProfileAC = (profile) => {
         payload: {
             profile,
         }
+    }
+};
+
+export const setUserProfileThunk = (profileId) => {
+    return (dispatch, getState) => {
+        API.getProfile(profileId).then(data => {
+            dispatch(setUserProfileAC(data))
+        })
     }
 };
 

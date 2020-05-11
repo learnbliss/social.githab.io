@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {isFetchingTrueAC, setAuthUserDataAC} from "../../reducers/authReducer";
-import API from "../../api/api";
+import {authMeThunk} from "../../reducers/authReducer";
 
 class HeaderContainer extends Component {
 
     componentDidMount(): void {
-        this.props.isFetchingTrueAC(true);
-            API.authMe().then(data => {
-                if (data.resultCode === 0) {
-                    const {id, email, login} = data.data;
-                    this.props.setAuthUserDataAC(id, email, login)
-                }
-            })
+        this.props.authMeThunk();
+        // this.props.isFetchingTrueAC(true);
+        //     API.authMe().then(data => {
+        //         if (data.resultCode === 0) {
+        //             const {id, email, login} = data.data;
+        //             this.props.setAuthUserDataAC(id, email, login)
+        //         }
+        //     })
     }
 
     render() {
@@ -32,6 +32,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    setAuthUserDataAC,
-    isFetchingTrueAC,
+    authMeThunk,
 })(HeaderContainer);

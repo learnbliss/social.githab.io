@@ -1,3 +1,5 @@
+import API from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -134,5 +136,44 @@ export const followingInProgressAC = (isProgress, userId) => {
             userId,
         }
     }
+};
+
+export const getUsersThunk = (currentPage, pageSize) => {
+    return (dispatch, getState) => {
+        dispatch(toggleIsFetchingAC(true));
+        dispatch(setCurrentPageAC(currentPage));
+        API.getUsers(currentPage, pageSize).then((data) => {
+            dispatch(toggleIsFetchingAC(false));
+            dispatch(setUsersAC(data.items));
+            if (getState().userPage.totalUsersCount === 0) {
+                dispatch(setTotalCountAC(data.totalCount));
+            }
+        });
+    }
+};
+
+export const followThunk = (userId) => {
+    return (dispatch, getState) => {
+        dispatch(followingInProgressAC(true, userId));
+        API.setUnfollow(userId).then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(unfollowAC(userId));
+            }
+            dispatch(followingInProgressAC(false, userId));
+        });
+    }
+};
+
+export const unfollowThunk = (userId) => {
+    return (dispatch, getState) => {
+        dispatch(followingInProgressAC(true, userId));
+        API.setFollow(userId).then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(followAC(userId));
+            }
+            dispatch(followingInProgressAC(false, userId));
+        });
+    }
+
 };
 

@@ -3,7 +3,6 @@ import styles from './users.module.scss';
 import defaultAvatar from '../../assets/img/UT8o1ZTXytaXXagOFbXf.jpg';
 import Preloader from "../Preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import API from "../../api/api";
 
 const Users = props => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -44,29 +43,27 @@ const Users = props => {
                                         return userId === user.id
                                     })}
                                             onClick={() => {
-                                                props.followingInProgressAC(true, user.id);
-                                                console.log('props.followingInProgress: ', props.followingInProgress);
-                                                API.setUnfollow(user.id).then((data) => {
-                                                    console.log('user.id: ', user.id);
-                                                    if (data.resultCode === 0) {
-                                                        props.unfollow(user.id);
-                                                    }
-                                                    props.followingInProgressAC(false, user.id);
-                                                    console.log('props.followingInProgress: ', props.followingInProgress);
-                                                });
+                                                props.followThunk(user.id)
+                                                // props.followingInProgressAC(true, user.id);
+                                                // API.setUnfollow(user.id).then((data) => {
+                                                //     if (data.resultCode === 0) {
+                                                //         props.unfollow(user.id);
+                                                //     }
+                                                //     props.followingInProgressAC(false, user.id);
+                                                // });
                                             }}>Follow</button>
                                     : <button disabled={props.followingInProgress.some(userId => {
                                         return userId === user.id
                                     })}
                                               onClick={() => {
-                                                  props.followingInProgressAC(true, user.id);
-                                                  API.setFollow(user.id).then((data) => {
-                                                      console.log('user.id: ', user.id);
-                                                      if (data.resultCode === 0) {
-                                                          props.follow(user.id);
-                                                      }
-                                                      props.followingInProgressAC(false, user.id);
-                                                  });
+                                                  props.unfollowThunk(user.id)
+                                                  // props.followingInProgressAC(true, user.id);
+                                                  // API.setFollow(user.id).then((data) => {
+                                                  //     if (data.resultCode === 0) {
+                                                  //         props.follow(user.id);
+                                                  //     }
+                                                  //     props.followingInProgressAC(false, user.id);
+                                                  // });
                                               }}>Unfollow</button>
                                 }
                             </div>

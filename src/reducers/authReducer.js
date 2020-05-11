@@ -1,3 +1,5 @@
+import API from "../api/api";
+
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const FETCH_DATA = 'FETCH_DATA';
 
@@ -43,5 +45,17 @@ export const isFetchingTrueAC = (boolean) => {
         payload: {
             isFetching: boolean
         }
+    }
+};
+
+export const authMeThunk = () => {
+    return (dispatch, getState) => {
+        dispatch(isFetchingTrueAC(true));
+        API.authMe().then(data => {
+            if (data.resultCode === 0) {
+                const {id, email, login} = data.data;
+                dispatch(setAuthUserDataAC(id, email, login))
+            }
+        })
     }
 };
