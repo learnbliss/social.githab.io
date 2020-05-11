@@ -70,7 +70,7 @@ export const setUserProfileAC = (profile) => {
     }
 };
 
-export const setUserProfileThunk = (profileId) => {
+export const getUserProfileThunk = (profileId) => {
     return (dispatch, getState) => {
         API.getProfile(profileId).then(data => {
             dispatch(setUserProfileAC(data))

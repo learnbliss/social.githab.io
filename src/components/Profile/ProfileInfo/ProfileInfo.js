@@ -2,6 +2,7 @@ import React from 'react';
 import contentHeadImg from '../../../assets/img/Sapa-terraces.jpg';
 import styles from './ProfileInfo.module.scss'
 import Preloader from "../../Preloader/Preloader";
+import defaultAvatar from '../../../assets/img/defaulAvatar.png'
 
 const ProfileInfo = props => {
     if (!props.profile) {
@@ -14,7 +15,7 @@ const ProfileInfo = props => {
                 <img className={styles.background} src={contentHeadImg} alt={'logo'}/>
             </div>
             <div className={styles.descriptionBlock}>
-                <img src={props.profile.photos.large} alt={'avatar'}/>
+                <img src={props.profile.photos.large || defaultAvatar} alt={'avatar'}/>
                 <div className={styles.description}>
                     <div><b>Имя:</b> {props.profile.fullName}</div>
                     <div><b>Слоган:</b> {props.profile.aboutMe}</div>
