@@ -40,18 +40,26 @@ const Users = props => {
                                     </NavLink>
                                 </div>
                                 {user.followed ?
-                                    <button onClick={() => {
+                                    <button disabled={props.followingInProgress.some(id => {return id === user.id})} onClick={() => {
+                                        props.followingInProgressAC(true, user.id);
+                                        console.log('props.followingInProgress: ', props.followingInProgress);
                                         API.setUnfollow(user.id).then((data) => {
+                                            console.log('user.id: ', user.id);
                                             if (data.resultCode === 0) {
-                                                props.unfollow(user.id)
+                                                props.unfollow(user.id);
                                             }
+                                            props.followingInProgressAC(false, user.id);
+                                            console.log('props.followingInProgress: ', props.followingInProgress);
                                         });
                                     }}>Follow</button>
-                                    : <button onClick={() => {
+                                    : <button disabled={props.followingInProgress.some(id => {return id === user.id})} onClick={() => {
+                                        props.followingInProgressAC(true, user.id);
                                         API.setFollow(user.id).then((data) => {
+                                            console.log('user.id: ', user.id);
                                             if (data.resultCode === 0) {
-                                                props.follow(user.id)
+                                                props.follow(user.id);
                                             }
+                                            props.followingInProgressAC(false, user.id);
                                         });
                                     }}>Unfollow</button>
                                 }

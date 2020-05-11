@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {
-    followAC,
+    followAC, followingInProgressAC,
     setCurrentPageAC,
     setTotalCountAC,
     setUsersAC,
@@ -31,10 +31,10 @@ class UsersContainer extends React.Component {
     onPageChanged = (page) => {
         this.props.toggleIsFetchingAC(true);
         this.props.setCurrentPageAC(page);
-       API.getUsers(page, this.props.pageSize).then((data) => {
-                this.props.toggleIsFetchingAC(false);
-                this.props.setUsersAC(data.items)
-            });
+        API.getUsers(page, this.props.pageSize).then((data) => {
+            this.props.toggleIsFetchingAC(false);
+            this.props.setUsersAC(data.items)
+        });
     };
 
     render() {
@@ -46,7 +46,9 @@ class UsersContainer extends React.Component {
                    users={this.props.users}
                    unfollow={this.props.unfollowAC}
                    follow={this.props.followAC}
-                   isFetching={this.props.isFetching}/>
+                   isFetching={this.props.isFetching}
+                   followingInProgress={this.props.followingInProgress}
+                   followingInProgressAC={this.props.followingInProgressAC}/>
         );
     }
 }
@@ -58,6 +60,7 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.userPage.totalUsersCount,
         currentPage: state.userPage.currentPage,
         isFetching: state.userPage.isFetching,
+        followingInProgress: state.userPage.followingInProgress,
     }
 };
 
@@ -92,5 +95,6 @@ export default connect(mapStateToProps,
         setCurrentPageAC,
         setTotalCountAC,
         toggleIsFetchingAC,
+        followingInProgressAC,
     }
 )(UsersContainer);
