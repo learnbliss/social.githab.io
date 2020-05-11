@@ -4,7 +4,7 @@ import styles from './Login.module.scss'
 const Login = props => {
     return (
         <div>
-            123
+            Не залогинен!
         </div>
     );
 };

@@ -56,6 +56,7 @@ export const authMeThunk = () => {
                 const {id, email, login} = data.data;
                 dispatch(setAuthUserDataAC(id, email, login))
             }
-        })
+        });
+        dispatch(isFetchingTrueAC(false));
     }
 };
