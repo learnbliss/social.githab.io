@@ -3,6 +3,7 @@ import styles from './Dialogs.module.scss'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {widthAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 const Dialogs = props => {
     const {dialogs, messages, textArea} = props;
@@ -36,4 +37,8 @@ const Dialogs = props => {
     );
 };
 
-export default widthAuthRedirect(Dialogs);
+export default compose(
+    widthAuthRedirect,
+)(Dialogs);
+
+// export default widthAuthRedirect(Dialogs);

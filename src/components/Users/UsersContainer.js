@@ -3,6 +3,7 @@ import {followThunk, getUsersThunk, unfollowThunk} from '../../reducers/UsersRed
 import React from 'react';
 import Users from './Users';
 import {widthAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -39,9 +40,9 @@ class UsersContainer extends React.Component {
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
-                   // unfollow={this.props.unfollowAC}
-                   // follow={this.props.followAC}
-                   // isFetching={this.props.isFetching}
+                // unfollow={this.props.unfollowAC}
+                // follow={this.props.followAC}
+                // isFetching={this.props.isFetching}
                 // followingInProgressAC={this.props.followingInProgressAC}
                    followingInProgress={this.props.followingInProgress}
                    followThunk={this.props.followThunk}
@@ -84,10 +85,21 @@ const mapStateToProps = (state) => {
 //     }
 // };
 
-export default widthAuthRedirect(connect(mapStateToProps,
-    {
-        getUsersThunk,
-        followThunk,
-        unfollowThunk,
-    }
-)(UsersContainer));
+export default compose(
+    connect(mapStateToProps,
+        {
+            getUsersThunk,
+            followThunk,
+            unfollowThunk,
+        }
+    ),
+    widthAuthRedirect,
+)(UsersContainer)
+
+// export default widthAuthRedirect(connect(mapStateToProps,
+//     {
+//         getUsersThunk,
+//         followThunk,
+//         unfollowThunk,
+//     }
+// )(UsersContainer));
