@@ -6,37 +6,52 @@ class ProfileStatus extends React.Component {
         super(props);
         this.state = {
             editMode: false,
-        }
+            status: this.props.status,
+        };
     }
 
     render() {
         return (
             <div className={styles.root}>
-                {this.state.editMode ?
+                {!this.state.editMode &&
+                    <div>
+                        <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+                    </div>
+                }
+                {this.state.editMode &&
                     <div>
                         <input autoFocus={true}
-                               onBlur={this.toggleEditMode}
-                               value={this.props.status}
+                               onBlur={this.deactivateEditMode}
+                               value={this.state.status}
                                onChange={this.changeStatus}/>
-                    </div>
-                    : <div>
-                        <span onDoubleClick={this.toggleEditMode}>{this.props.status}</span>
                     </div>
                 }
             </div>
         );
     }
 
-    toggleEditMode = () => {
+
+    activateEditMode = () => {
         this.setState((state) => {
             return {
-                editMode: !this.state.editMode
+                editMode: true
             }
         })
     };
 
-    changeStatus = () => {
-        console.log('changeStatus!');
+    deactivateEditMode = () => {
+        this.setState((state) => {
+            return {
+                editMode: false
+            }
+        });
+        this.props.updateStatusThunk(this.state.status)
+    };
+
+    changeStatus = (e) => {
+        this.setState({
+            status: e.target.value,
+        });
     }
 }
 

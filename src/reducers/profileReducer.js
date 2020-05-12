@@ -13,7 +13,7 @@ let initialState = {
     ],
     textArea: '',
     profile: null,
-    status: null,
+    status: 'Ваш статус',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -97,7 +97,19 @@ export const getUserProfileThunk = (profileId) => {
 export const getStatusThunk = (userId) => {
     return (dispatch, getState) => {
         profileAPI.getStatus(userId).then(data => {
-            dispatch(setUserStatusAC(data))
+            if (data) {
+                dispatch(setUserStatusAC(data))
+            }
+        })
+    }
+};
+
+export const updateStatusThunk = (status) => {
+    return (dispatch, getState) => {
+        profileAPI.updateStatus(status).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setUserStatusAC(status));
+            }
         })
     }
 };
