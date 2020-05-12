@@ -3,6 +3,7 @@ import contentHeadImg from '../../../assets/img/Sapa-terraces.jpg';
 import styles from './ProfileInfo.module.scss'
 import Preloader from "../../Preloader/Preloader";
 import defaultAvatar from '../../../assets/img/defaulAvatar.png'
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 const ProfileInfo = props => {
     if (!props.profile) {
@@ -11,9 +12,10 @@ const ProfileInfo = props => {
 
     return (
         <div>
-            {/*<div>*/}
-            {/*    <img className={styles.background} src={contentHeadImg} alt={'logo'}/>*/}
-            {/*</div>*/}
+            <div>
+                {/*<img className={styles.background} src={contentHeadImg} alt={'logo'}/>*/}
+                <ProfileStatus status={'Hello'}/>
+            </div>
             <div className={styles.descriptionBlock}>
                 <img src={props.profile.photos.large || defaultAvatar} alt={'avatar'}/>
                 <div className={styles.description}>
