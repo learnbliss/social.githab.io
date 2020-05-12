@@ -8,22 +8,12 @@ const instance = Axios.create({
     }
 });
 
-export const API = {
+export const usersAPI = {
     getUsers(currentPage, pageSize) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`,)
             .then((response) => {
                 return response.data
             })
-    },
-
-    authMe() {
-        return instance.get(`auth/me`)
-            .then(response => response.data)
-    },
-
-    getProfile(paramsId) {
-        return instance.get(`profile/${paramsId || 2}`)
-            .then(response => response.data)
     },
 
     setFollow(userId) {
@@ -37,4 +27,20 @@ export const API = {
     },
 };
 
-export default API;
+export const authAPI = {
+    authMe() {
+        return instance.get(`auth/me`)
+            .then(response => response.data)
+    },
+};
+
+export const profileAPI = {
+    getProfile(paramsId) {
+        return instance.get(`profile/${paramsId || 2}`)
+            .then(response => response.data)
+    },
+    getStatus(userId) {
+        return instance.get('/profile/status')
+            .then(response => response.data)
+    }
+};
