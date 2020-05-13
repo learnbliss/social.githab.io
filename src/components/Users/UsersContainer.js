@@ -93,7 +93,7 @@ export default compose(
             unfollowThunk,
         }
     ),
-    widthAuthRedirect,
+    // widthAuthRedirect,
 )(UsersContainer)
 
 // export default widthAuthRedirect(connect(mapStateToProps,

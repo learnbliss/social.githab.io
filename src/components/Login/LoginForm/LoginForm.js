@@ -1,34 +1,26 @@
 import React from 'react';
-import styles from "./LoginForm.module.scss";
+import styles from './LoginForm.module.scss'
 import {Field, reduxForm} from "redux-form";
 
 const LoginForm = props => {
     return (
-        <form className={styles.form} onSubmit={props.handleSubmit}>
+        <form className={styles.loginForm} onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'login'}
-                       type="login"
-                       component={'input'}
-                       name={'login'}/>
+                <Field component="input" name="login" type="text" placeholder="login"/>
             </div>
             <div>
-                <Field placeholder={'password'}
-                       type="password"
-                       component={'input'}
-                       name={'password'}/>
+                <Field component="input" name="password" type="text" placeholder="password"/>
             </div>
             <div>
-                <Field type="checkbox"
-                       component={'input'}
-                       name={'rememberMe'}/><span>remember me</span>
+                <Field component="input" name="rememberMe" type="checkbox"/> Запомнить меня
             </div>
             <div>
-                <button>Login</button>
+                <button>Login me now!</button>
             </div>
         </form>
     );
 };
 
-export const LoginReduxForm = reduxForm({
-    form: 'login',
+export default reduxForm({
+    form: 'login'
 })(LoginForm);

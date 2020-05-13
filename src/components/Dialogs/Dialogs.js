@@ -38,7 +38,7 @@ const Dialogs = props => {
 };
 
 export default compose(
-    widthAuthRedirect,
+    // widthAuthRedirect,
 )(Dialogs);
 
 // export default widthAuthRedirect(Dialogs);

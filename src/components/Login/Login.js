@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Login.module.scss'
-import {LoginReduxForm} from "./LoginForm/LoginForm";
+import LoginForm from "./LoginForm/LoginForm";
 
 const Login = props => {
 
@@ -10,8 +10,8 @@ const Login = props => {
 
     return (
         <div className={styles.auth}>
-            <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <h1>Enter site:</h1>
+            <LoginForm onSubmit={onSubmit}/>
         </div>
     );
 };

@@ -1,10 +1,8 @@
-.form {
+.loginForm {
   display: grid;
   grid-gap: 1rem;
-  input {
-    font-size: .9rem;
-  }
-  button {
+  input,
+  button{
     font-size: .9rem;
   }
 }
