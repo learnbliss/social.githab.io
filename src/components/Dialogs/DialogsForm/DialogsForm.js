@@ -6,7 +6,7 @@ const DialogsForm = props => {
     return (
         <form onSubmit={props.handleSubmit} className={styles.form}>
             <Field component="textarea" name="message"/> {/*value={textArea} onChange={pushDialog}*/}
-            <button onClick={props.addMessage} style={{justifySelf: 'start'}}>add post</button>
+            <button style={{justifySelf: 'start'}}>add post</button>
         </form>
     );
 };

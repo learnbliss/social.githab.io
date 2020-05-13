@@ -8,7 +8,7 @@ const PostForm = props => {
                 <Field component="textarea" name="post"/>
             </div>
             <div>
-                <button onClick={props.addPost}>add post</button>
+                <button>add post</button>
             </div>
         </form>
     );

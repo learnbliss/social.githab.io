@@ -2,6 +2,7 @@ import {authAPI} from "../api/api";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const FETCH_DATA = 'FETCH_DATA';
+const LOGIN = 'LOGIN';
 
 const initialState = {
     id: null,
@@ -58,5 +59,24 @@ export const authMeThunk = () => {
             }
         });
         dispatch(isFetchingTrueAC(false));
+    }
+};
+
+export const loginThunk = (loginData) => {
+    return (dispatch, getState) => {
+        authAPI.loginMe().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(loginAC(loginData))
+            }
+        })
+    }
+};
+
+export const loginAC = (loginData) => {
+    return {
+        type: LOGIN,
+        payload: {
+            loginData,
+        },
     }
 };
