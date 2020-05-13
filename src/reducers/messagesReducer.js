@@ -1,4 +1,3 @@
-const PUSH_DATA_TO_STATE_DIALOG = 'PUSH_DATA_TO_STATE_DIALOG';
 const ADD_MESSAGE_DIALOG = 'ADD_MESSAGE_DIALOG';
 
 let initialState = {
@@ -26,24 +25,16 @@ let initialState = {
             avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcShIt3l2-355Sf6La3bZUy7lvRj6vDzjhWQfW1uNHWYxwRNcwzY&usqp=CAU'
         },
     ],
-    textArea: '',
 };
 
 const messagesReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_MESSAGE_DIALOG: {
-            let newMessage = {id: state.messages.length + 1, message: state.textArea,};
+            let newMessage = {id: state.messages.length + 1, message: action.payload.message,};
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
-                textArea: '',
-            }
-        }
-        case PUSH_DATA_TO_STATE_DIALOG: {
-            return {
-                ...state,
-                textArea: action.payload.textAreaValue,
             }
         }
         default:
@@ -51,18 +42,12 @@ const messagesReducer = (state = initialState, action) => {
     }
 };
 
-export const pushDataToStateDialogAC = (text) => {
-    return {
-        type: PUSH_DATA_TO_STATE_DIALOG,
-        payload: {
-            textAreaValue: text,
-        },
-    }
-};
-
-export const addMessageAC = () => {
+export const addMessageAC = (message) => {
     return {
         type: ADD_MESSAGE_DIALOG,
+        payload: {
+            message
+        }
     }
 };
 

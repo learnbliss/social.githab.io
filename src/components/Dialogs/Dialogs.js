@@ -2,19 +2,17 @@ import React from 'react';
 import styles from './Dialogs.module.scss'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {widthAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import DialogsForm from "./DialogsForm/DialogsForm";
 
 const Dialogs = props => {
-    const {dialogs, messages, textArea} = props;
-    const pushDialog = (e) => {
-        props.pushDataToStateDialog(e.target.value)
+    const {dialogs, messages} = props;
+
+    const addMessage = (message) => {
+        console.log('message: ', message);
+        props.addMessage(message.message)
     };
-    const addMessage = () => {
-        if (textArea) {
-            props.addMessage()
-        }
-    };
+
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogItems}>
@@ -25,8 +23,9 @@ const Dialogs = props => {
                 })}
             </div>
             <div className={styles.messageItems}>
-                <textarea value={textArea} onChange={pushDialog}/>
-                <button onClick={addMessage} style={{justifySelf: 'start'}}>add post</button>
+                <DialogsForm onSubmit={addMessage}/>
+                {/*<textarea value={textArea} onChange={pushDialog}/>*/}
+                {/*<button onClick={addMessage} style={{justifySelf: 'start'}}>add post</button>*/}
                 {messages.map((item) => {
                     return (
                         <Message key={item.id} message={item.message}/>
