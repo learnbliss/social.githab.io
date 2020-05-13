@@ -1,26 +1,18 @@
 import React from 'react';
 import styles from './MyPosts.module.scss'
 import PostItem from './PostItem/PostItem';
+import PostForm from "./PostForm/PostForm";
 
 const MyPosts = (props) => {
-    const {posts, textArea} = props;
-    const pushPost = (e) => {
-        props.pushDataToStatePost(e.target.value);
-    };
-    const addPost = () => {
-        if (textArea) {
-            props.addPost();
-        }
+    const {posts} = props;
+
+    const addPost = (post) => {
+        props.addPost(post.post)
     };
     return (
         <div className={styles.post}>
             <h3>my post</h3>
-            <div>
-                <textarea value={textArea} onChange={pushPost}/>
-            </div>
-            <div>
-                <button onClick={addPost}>add post</button>
-            </div>
+            <PostForm onSubmit={addPost}/>
             {posts.map((item) => {
                 return (
                     <PostItem key={item.id} message={item.message} likeCounts={item.likeCounts}/>

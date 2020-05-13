@@ -1,6 +1,6 @@
 // import React from 'react';
 import MyPosts from './MyPosts';
-import {addPostAC, pushDataToStateProFileAC} from '../../../reducers/profileReducer';
+import {addPostAC} from '../../../reducers/profileReducer';
 import {connect} from 'react-redux';
 
 // const MyPostContainer = () => {
@@ -32,11 +32,8 @@ const mapStateToProps = (state) => {
 
 const mapStateToDispatch = (dispatch) => {
     return {
-        pushDataToStatePost: (text) => {
-            dispatch(pushDataToStateProFileAC(text))
-        },
-        addPost: () => {
-            dispatch(addPostAC())
+        addPost: (post) => {
+            dispatch(addPostAC(post))
         },
     }
 };

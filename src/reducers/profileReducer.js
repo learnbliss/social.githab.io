@@ -1,6 +1,5 @@
 import {profileAPI} from "../api/api";
 
-const PUSH_DATA_TO_STATE_PROFILE = 'PUSH_DATA_TO_STATE_PROFILE';
 const ADD_POST_PROFILE = 'ADD_POST_PROFILE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
@@ -23,20 +22,13 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST_PROFILE:
             let newPost = {
                 id: state.posts.length + 1,
-                message: state.textArea,
+                message: action.payload.post,
                 likeCounts: 0,
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                textArea: '',
             };
-        case PUSH_DATA_TO_STATE_PROFILE: {
-            return {
-                ...state,
-                textArea: action.payload.textAreaValue,
-            };
-        }
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -52,18 +44,12 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const pushDataToStateProFileAC = (text) => {
-    return {
-        type: PUSH_DATA_TO_STATE_PROFILE,
-        payload: {
-            textAreaValue: text,
-        },
-    }
-};
-
-export const addPostAC = () => {
+export const addPostAC = (post) => {
     return {
         type: ADD_POST_PROFILE,
+        payload: {
+            post,
+        }
 
     }
 };
