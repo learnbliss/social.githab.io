@@ -1,4 +1,5 @@
 import {usersAPI} from "../api/api";
+import {createSelector} from 'reselect'
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -183,6 +184,17 @@ selectors
 export const getUsersSelector = (state) => {
    return  state.userPage.users
 };
+
+// reselect example ->>>>
+const getUsers = (state) => {
+   return  state.userPage.users
+};
+
+export const getUsersSelectorDifficult = createSelector(getUsers, (users) => {
+    users.filter(u => {return u})
+});
+// <<<<- reselect example
+
 export const getPageSizeSelector = (state) => {
    return  state.userPage.pageSize
 };
