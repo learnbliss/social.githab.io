@@ -75,6 +75,7 @@ export const setUserStatusAC = (status) => {
 export const getUserProfileThunk = (profileId) => {
     return (dispatch, getState) => {
         profileAPI.getProfile(profileId).then(data => {
+            console.log('profileId: ', profileId);
             dispatch(setUserProfileAC(data))
         })
     }

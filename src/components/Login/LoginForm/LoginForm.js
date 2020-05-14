@@ -5,7 +5,6 @@ import {CustomInput} from "../../common/FormsControl/FormsControl";
 import {required} from "../../../utils/validators/validators";
 
 const LoginForm = props => {
-    console.log('LoginForm props: ', props);
     return (
         <form className={styles.loginForm} onSubmit={props.handleSubmit}>
             <div>

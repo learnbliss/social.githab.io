@@ -64,7 +64,6 @@ export const authMeThunk = () => {
 export const loginThunk = (email, password, rememberMe) => {
     return (dispatch, getState) => {
         authAPI.loginMe(email, password, rememberMe, true).then(data => {
-            console.log('authAPI.loginMe data: ', data);
             if (data.resultCode === 0) {
                 dispatch(authMeThunk())
             } else {
