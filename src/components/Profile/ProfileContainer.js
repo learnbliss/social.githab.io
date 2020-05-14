@@ -10,7 +10,10 @@ class ProfileContainer extends Component {
     componentDidMount(): void {
         let userId = this.props.match.params.id;
         if (!this.props.match.params.id) {
-            userId = this.props.authUserId
+            userId = this.props.authUserId;
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfileThunk(userId);
         this.props.getStatusThunk(userId)

@@ -51,13 +51,13 @@ export const isFetchingTrueAC = (boolean) => {
 export const authMeThunk = () => {
     return (dispatch, getState) => {
         dispatch(isFetchingTrueAC(true));
-        authAPI.authMe().then(data => {
+        return authAPI.authMe().then(data => {
             if (data.resultCode === 0) {
                 const {id, email, login} = data.data;
-                dispatch(setAuthUserDataAC(id, email, login, true))
+                dispatch(setAuthUserDataAC(id, email, login, true,))
             }
         });
-        dispatch(isFetchingTrueAC(false));
+        // dispatch(isFetchingTrueAC(false));
     }
 };
 

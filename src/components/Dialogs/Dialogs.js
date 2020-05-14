@@ -4,6 +4,7 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {compose} from "redux";
 import DialogsForm from "./DialogsForm/DialogsForm";
+import {widthAuthRedirect} from "../../hoc/withAuthRedirect";
 
 const Dialogs = props => {
     const {dialogs, messages} = props;
@@ -36,7 +37,7 @@ const Dialogs = props => {
 };
 
 export default compose(
-    // widthAuthRedirect,
+    widthAuthRedirect,
 )(Dialogs);
 
 // export default widthAuthRedirect(Dialogs);

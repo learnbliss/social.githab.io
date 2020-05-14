@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {authMeThunk, logoutThunk} from "../../reducers/authReducer";
+import {logoutThunk} from "../../reducers/authReducer";
 
 class HeaderContainer extends Component {
 
-    componentDidMount(): void {
-        this.props.authMeThunk();
-        // this.props.isFetchingTrueAC(true);
-        //     API.authMe().then(data => {
-        //         if (data.resultCode === 0) {
-        //             const {id, email, login} = data.data;
-        //             this.props.setAuthUserDataAC(id, email, login)
-        //         }
-        //     })
-    }
+    // componentDidMount(): void {
+    //     this.props.authMeThunk();
+    //     // this.props.isFetchingTrueAC(true);
+    //     //     API.authMe().then(data => {
+    //     //         if (data.resultCode === 0) {
+    //     //             const {id, email, login} = data.data;
+    //     //             this.props.setAuthUserDataAC(id, email, login)
+    //     //         }
+    //     //     })
+    // }
 
     render() {
         return (
@@ -32,6 +32,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    authMeThunk,
+    // authMeThunk,
     logoutThunk,
 })(HeaderContainer);
