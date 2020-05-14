@@ -37,7 +37,7 @@ export default compose(
         updateStatusThunk,
     }),
     withRouter,
-    // widthAuthRedirect,
+    widthAuthRedirect,
 )(ProfileContainer)
 
 // export default widthAuthRedirect(withRouter(connect(mapStateToProps, {

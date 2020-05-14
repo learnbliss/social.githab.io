@@ -2,7 +2,8 @@ import {authAPI} from "../api/api";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const FETCH_DATA = 'FETCH_DATA';
-const LOGIN = 'LOGIN';
+const LOGOUT = 'LOGOUT';
+// const LOGIN = 'LOGIN';
 
 const initialState = {
     id: null,
@@ -17,8 +18,7 @@ export default function authReducer(state = initialState, action) {
         case SET_AUTH_USER_DATA:
             return {
                 ...state,
-                ...action.payload.data,
-                isAuth: true,
+                ...action.payload,
                 isFetching: false,
             };
         case FETCH_DATA:
@@ -26,16 +26,21 @@ export default function authReducer(state = initialState, action) {
                 ...state,
                 isFetching: action.payload.isFetching,
             };
+        case LOGOUT:
+            return {
+                ...state,
+                isAuth: action.payload.isAuth,
+            };
         default:
             return state
     }
 }
 
-export const setAuthUserDataAC = (id, email, login) => {
+export const setAuthUserDataAC = (id, email, login, isAuth) => {
     return {
         type: SET_AUTH_USER_DATA,
         payload: {
-            data: {id, email, login},
+            id, email, login, isAuth,
         }
     }
 };
@@ -55,28 +60,32 @@ export const authMeThunk = () => {
         authAPI.authMe().then(data => {
             if (data.resultCode === 0) {
                 const {id, email, login} = data.data;
-                dispatch(setAuthUserDataAC(id, email, login))
+                dispatch(setAuthUserDataAC(id, email, login, true))
             }
         });
         dispatch(isFetchingTrueAC(false));
     }
 };
 
-export const loginThunk = (loginData) => {
+export const loginThunk = (email, password, rememberMe) => {
     return (dispatch, getState) => {
-        authAPI.loginMe().then(data => {
+        authAPI.loginMe(email, password, rememberMe, true).then(data => {
+            console.log('email, password, rememberMe: ', email, password, rememberMe);
             if (data.resultCode === 0) {
-                dispatch(loginAC(loginData))
+                dispatch(authMeThunk())
+            } else {
+                console.error('error, resulCode = ', data.resultCode);
             }
         })
     }
 };
 
-export const loginAC = (loginData) => {
-    return {
-        type: LOGIN,
-        payload: {
-            loginData,
-        },
+export const logoutThunk = () => {
+    return (dispatch, getState) => {
+        authAPI.logoutMe().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserDataAC(null, null, null, false))
+            }
+        })
     }
 };
