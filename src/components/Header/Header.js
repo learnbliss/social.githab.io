@@ -5,7 +5,6 @@ import {NavLink} from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
 
 const Header = (props) => {
-    console.log('props.isAuth: ', props.isAuth);
     return (
         <header className={styles.header}>
             <img src={logo} alt='logo'/>

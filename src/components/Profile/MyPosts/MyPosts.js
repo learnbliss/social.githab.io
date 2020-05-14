@@ -7,7 +7,6 @@ const MyPosts = (props) => {
     const {posts} = props;
 
     const addPost = (post) => {
-        console.log('post add');
         props.addPost(post.post)
     };
     return (

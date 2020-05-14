@@ -9,7 +9,6 @@ const Dialogs = props => {
     const {dialogs, messages} = props;
 
     const addMessage = (message) => {
-        console.log('message: ', message);
         props.addMessage(message.message)
     };
 

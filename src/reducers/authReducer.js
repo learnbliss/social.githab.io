@@ -1,9 +1,8 @@
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const FETCH_DATA = 'FETCH_DATA';
-const LOGOUT = 'LOGOUT';
-// const LOGIN = 'LOGIN';
 
 const initialState = {
     id: null,
@@ -25,11 +24,6 @@ export default function authReducer(state = initialState, action) {
             return {
                 ...state,
                 isFetching: action.payload.isFetching,
-            };
-        case LOGOUT:
-            return {
-                ...state,
-                isAuth: action.payload.isAuth,
             };
         default:
             return state
@@ -70,11 +64,15 @@ export const authMeThunk = () => {
 export const loginThunk = (email, password, rememberMe) => {
     return (dispatch, getState) => {
         authAPI.loginMe(email, password, rememberMe, true).then(data => {
-            console.log('email, password, rememberMe: ', email, password, rememberMe);
+            console.log('authAPI.loginMe data: ', data);
             if (data.resultCode === 0) {
                 dispatch(authMeThunk())
             } else {
                 console.error('error, resulCode = ', data.resultCode);
+                let messageError = data.messages.length > 0 ? data.messages[0] : 'Some error';
+                dispatch(stopSubmit('login', {
+                    _error: messageError,
+                } ))
             }
         })
     }

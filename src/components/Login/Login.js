@@ -6,7 +6,6 @@ import {Redirect} from "react-router-dom";
 const Login = props => {
 
     const onSubmit = (formData) => {
-        console.log('formData: ', formData);
         const {email, password, rememberMe} = formData;
         props.loginThunk(email, password, rememberMe)
     };

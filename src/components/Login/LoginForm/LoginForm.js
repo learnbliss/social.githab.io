@@ -5,7 +5,7 @@ import {CustomInput} from "../../common/FormsControl/FormsControl";
 import {required} from "../../../utils/validators/validators";
 
 const LoginForm = props => {
-
+    console.log('LoginForm props: ', props);
     return (
         <form className={styles.loginForm} onSubmit={props.handleSubmit}>
             <div>
@@ -25,6 +25,11 @@ const LoginForm = props => {
                        name="rememberMe"
                        type="checkbox"/> Запомнить меня
             </div>
+            {props.error && (
+                <div className={styles.formSummaryError}>
+                    {props.error}
+                </div>
+            )}
             <div>
                 <button>Login me now!</button>
             </div>
