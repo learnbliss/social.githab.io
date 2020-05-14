@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../logo.svg';
 import styles from './Header.module.scss'
 import {NavLink} from "react-router-dom";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 
 const Header = (props) => {
     return (

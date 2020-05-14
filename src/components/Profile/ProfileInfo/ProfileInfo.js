@@ -1,7 +1,6 @@
 import React from 'react';
-import contentHeadImg from '../../../assets/img/Sapa-terraces.jpg';
 import styles from './ProfileInfo.module.scss'
-import Preloader from "../../Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import defaultAvatar from '../../../assets/img/defaulAvatar.png'
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
