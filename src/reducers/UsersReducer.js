@@ -153,7 +153,7 @@ export const getUsersThunk = (currentPage, pageSize) => {
 };
 
 export const followThunk = (userId) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(followingInProgressAC(true, userId));
         usersAPI.setUnfollow(userId).then((data) => {
             if (data.resultCode === 0) {
@@ -165,7 +165,7 @@ export const followThunk = (userId) => {
 };
 
 export const unfollowThunk = (userId) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(followingInProgressAC(true, userId));
         usersAPI.setFollow(userId).then((data) => {
             if (data.resultCode === 0) {
@@ -174,6 +174,27 @@ export const unfollowThunk = (userId) => {
             dispatch(followingInProgressAC(false, userId));
         });
     }
-
 };
 
+/**
+selectors
+ **/
+
+export const getUsersSelector = (state) => {
+   return  state.userPage.users
+};
+export const getPageSizeSelector = (state) => {
+   return  state.userPage.pageSize
+};
+export const getTotalUsersCountSelector = (state) => {
+   return  state.userPage.totalUsersCount
+};
+export const getCurrentPageSelector = (state) => {
+   return  state.userPage.currentPage
+};
+export const getIsFetchingSelector = (state) => {
+   return  state.userPage.isFetching
+};
+export const getFollowingInProgressSelector = (state) => {
+   return  state.userPage.followingInProgress
+};

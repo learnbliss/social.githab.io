@@ -1,5 +1,15 @@
 import {connect} from 'react-redux';
-import {followThunk, getUsersThunk, unfollowThunk} from '../../reducers/UsersReducer';
+import {
+    followThunk,
+    getCurrentPageSelector,
+    getFollowingInProgressSelector,
+    getIsFetchingSelector,
+    getPageSizeSelector,
+    getTotalUsersCountSelector,
+    getUsersSelector,
+    getUsersThunk,
+    unfollowThunk
+} from '../../reducers/UsersReducer';
 import React from 'react';
 import Users from './Users';
 import {compose} from "redux";
@@ -50,14 +60,25 @@ class UsersContainer extends React.Component {
     }
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         users: state.userPage.users,
+//         pageSize: state.userPage.pageSize,
+//         totalUsersCount: state.userPage.totalUsersCount,
+//         currentPage: state.userPage.currentPage,
+//         isFetching: state.userPage.isFetching,
+//         followingInProgress: state.userPage.followingInProgress,
+//     }
+// };
+
 const mapStateToProps = (state) => {
     return {
-        users: state.userPage.users,
-        pageSize: state.userPage.pageSize,
-        totalUsersCount: state.userPage.totalUsersCount,
-        currentPage: state.userPage.currentPage,
-        isFetching: state.userPage.isFetching,
-        followingInProgress: state.userPage.followingInProgress,
+        users: getUsersSelector(state),
+        pageSize: getPageSizeSelector(state),
+        totalUsersCount: getTotalUsersCountSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        followingInProgress: getFollowingInProgressSelector(state),
     }
 };
 
