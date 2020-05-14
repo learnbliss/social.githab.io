@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializedAppThunk} from "./reducers/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import HiApp from "./components/HiApp/HiApp";
 
 class App extends React.Component<{}> {
 
@@ -30,6 +31,9 @@ class App extends React.Component<{}> {
                 <HeaderContainer/>
                 <NavBar/>
                 <div className="app-wrapper-content">
+                    <Route exact path='/' render={() => {
+                        return <HiApp/>
+                    }}/>
                     <Route path='/dialogs' render={() => {
                         return <DialogsContainer/>
                     }}/>

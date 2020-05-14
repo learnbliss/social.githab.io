@@ -2,7 +2,6 @@ import {connect} from 'react-redux';
 import {followThunk, getUsersThunk, unfollowThunk} from '../../reducers/UsersReducer';
 import React from 'react';
 import Users from './Users';
-import {widthAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 class UsersContainer extends React.Component {
@@ -42,7 +41,7 @@ class UsersContainer extends React.Component {
                    users={this.props.users}
                 // unfollow={this.props.unfollowAC}
                 // follow={this.props.followAC}
-                // isFetching={this.props.isFetching}
+                   isFetching={this.props.isFetching}
                 // followingInProgressAC={this.props.followingInProgressAC}
                    followingInProgress={this.props.followingInProgress}
                    followThunk={this.props.followThunk}

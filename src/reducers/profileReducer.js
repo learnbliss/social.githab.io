@@ -73,16 +73,15 @@ export const setUserStatusAC = (status) => {
 };
 
 export const getUserProfileThunk = (profileId) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         profileAPI.getProfile(profileId).then(data => {
-            console.log('profileId: ', profileId);
             dispatch(setUserProfileAC(data))
         })
     }
 };
 
 export const getStatusThunk = (userId) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         profileAPI.getStatus(userId).then(data => {
             if (data) {
                 dispatch(setUserStatusAC(data))
@@ -92,7 +91,7 @@ export const getStatusThunk = (userId) => {
 };
 
 export const updateStatusThunk = (status) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         profileAPI.updateStatus(status).then(data => {
             if (data.resultCode === 0) {
                 dispatch(setUserStatusAC(status));

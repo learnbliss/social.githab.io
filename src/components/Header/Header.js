@@ -7,7 +7,7 @@ import Preloader from "../common/Preloader/Preloader";
 const Header = (props) => {
     return (
         <header className={styles.header}>
-            <img src={logo} alt='logo'/>
+            <NavLink to={'/'}><img src={logo} alt='logo'/></NavLink>
             {props.isFetching && <Preloader/>}
             <div className={styles.loginBlock}>
                 {props.isAuth ?

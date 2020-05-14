@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Settings.module.scss'
+// import styles from './Settings.module.scss'
 
-const Settings = props => {
+const Settings = () => {
     return (
         <div>
             Settings
