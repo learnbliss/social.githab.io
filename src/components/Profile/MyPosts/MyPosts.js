@@ -3,7 +3,8 @@ import styles from './MyPosts.module.scss'
 import PostItem from './PostItem/PostItem';
 import PostForm from "./PostForm/PostForm";
 
-const MyPosts = (props) => {
+function MyPosts(props) {
+    console.log('MyPosts RENDER');
     const {posts} = props;
 
     const addPost = (post) => {
@@ -20,6 +21,6 @@ const MyPosts = (props) => {
             })}
         </div>
     );
-};
+}
 
-export default MyPosts;
+export default React.memo(MyPosts);
