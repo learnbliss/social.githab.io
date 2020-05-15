@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './ProfileInfo.module.scss'
 import Preloader from "../../common/Preloader/Preloader";
 import defaultAvatar from '../../../assets/img/defaulAvatar.png'
-import ProfileStatus from "../ProfileStatus/ProfileStatus";
+// import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import ProfileStatusHOOKS from "../ProfileStatus/ProfileStatusHOOKS";
 
 const ProfileInfo = props => {
     if (!props.profile) {
@@ -13,7 +14,7 @@ const ProfileInfo = props => {
         <div>
             <div>
                 {/*<img className={styles.background} src={contentHeadImg} alt={'logo'}/>*/}
-                <ProfileStatus status={props.status} updateStatusThunk={props.updateStatusThunk}/>
+                <ProfileStatusHOOKS status={props.status} updateStatusThunk={props.updateStatusThunk}/>
             </div>
             <div className={styles.descriptionBlock}>
                 <img src={props.profile.photos.large || defaultAvatar} alt={'avatar'}/>
