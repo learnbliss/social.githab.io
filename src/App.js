@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import NavBar from "./components/NavBar/Navbar";
-import {Route, withRouter} from "react-router-dom";
+import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -70,5 +70,4 @@ export default compose(
     }, {
         initializedAppThunk,
     }),
-    withRouter,
 )(App);
