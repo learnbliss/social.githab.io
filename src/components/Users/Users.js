@@ -51,7 +51,7 @@ const Users = props => {
                                                 //     }
                                                 //     props.followingInProgressAC(false, user.id);
                                                 // });
-                                            }}>Follow</button>
+                                            }}>Unfollow</button>
                                     : <button disabled={props.followingInProgress.some(userId => {
                                         return userId === user.id
                                     })}
@@ -64,7 +64,7 @@ const Users = props => {
                                                   //     }
                                                   //     props.followingInProgressAC(false, user.id);
                                                   // });
-                                              }}>Unfollow</button>
+                                              }}>Follow</button>
                                 }
                             </div>
                             <div className={styles.descriptionUser}>

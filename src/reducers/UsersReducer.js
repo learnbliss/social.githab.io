@@ -1,5 +1,6 @@
 import {usersAPI} from "../api/api";
 import {createSelector} from 'reselect'
+import {updateObjectInArray} from "../utils/Helper/reducer-helper";
 
 const prefix = 'USERS_';
 
@@ -25,22 +26,24 @@ export default function UsersReducer(state = initialState, action) {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map((user) => {
-                    if (user.id === action.payload.userId) {
-                        return {...user, followed: true,}
-                    }
-                    return user
-                })
+                users: updateObjectInArray(state.users, action.payload.userId, 'id', {followed: true})
+                // users: state.users.map((user) => {
+                //     if (user.id === action.payload.userId) {
+                //         return {...user, followed: true,}
+                //     }
+                //     return user
+                // })
             };
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map((user) => {
-                    if (user.id === action.payload.userId) {
-                        return {...user, followed: false,}
-                    }
-                    return user
-                })
+                users: updateObjectInArray(state.users, action.payload.userId, 'id', {followed: false})
+                // users: state.users.map((user) => {
+                //     if (user.id === action.payload.userId) {
+                //         return {...user, followed: false,}
+                //     }
+                //     return user
+                // })
             };
         case SET_USERS:
             return {
@@ -169,6 +172,16 @@ export const getUsersThunk = (currentPage, pageSize) => {
     }
 };
 
+//double logical refactor
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(followingInProgressAC(true, userId));
+    const data = await apiMethod(userId);
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(userId));
+    }
+    dispatch(followingInProgressAC(false, userId));
+};
+
 // export const followThunk = (userId) => {
 //     return (dispatch) => {
 //         dispatch(followingInProgressAC(true, userId));
@@ -182,12 +195,7 @@ export const getUsersThunk = (currentPage, pageSize) => {
 // };
 export const followThunk = (userId) => {
     return async (dispatch) => {
-        dispatch(followingInProgressAC(true, userId));
-        const data = await usersAPI.setUnfollow(userId);
-        if (data.resultCode === 0) {
-            dispatch(unfollowAC(userId));
-        }
-        dispatch(followingInProgressAC(false, userId));
+        await followUnfollowFlow(dispatch, userId, usersAPI.setUnfollow.bind(usersAPI), unfollowAC);
     }
 };
 
@@ -204,12 +212,7 @@ export const followThunk = (userId) => {
 // };
 export const unfollowThunk = (userId) => {
     return async (dispatch) => {
-        dispatch(followingInProgressAC(true, userId));
-        const data = await usersAPI.setFollow(userId);
-        if (data.resultCode === 0) {
-            dispatch(followAC(userId));
-        }
-        dispatch(followingInProgressAC(false, userId));
+        await followUnfollowFlow(dispatch, userId, usersAPI.setFollow.bind(usersAPI), followAC);
     }
 };
 
