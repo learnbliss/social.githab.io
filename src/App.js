@@ -65,6 +65,7 @@ class App extends React.Component<{}> {
 export default compose(
     connect((state) => {
         return {
+            console: console.log('state: ', state),
             initialized: state.app.initialized,
         }
     }, {

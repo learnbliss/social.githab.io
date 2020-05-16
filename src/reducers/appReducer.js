@@ -1,6 +1,8 @@
 import {authMeThunk} from "./authReducer";
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
+const prefix = 'APP_';
+
+const INITIALIZED_SUCCESS = `${prefix}INITIALIZED_SUCCESS`;
 
 const initialState = {
     initialized: false,
@@ -25,7 +27,7 @@ export const initializedSuccessAC = () => {
 };
 
 export const initializedAppThunk = () => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         let promise = dispatch(authMeThunk());
         Promise.all([promise]).then(() => {
             dispatch(initializedSuccessAC())

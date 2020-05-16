@@ -1,4 +1,6 @@
-const ADD_MESSAGE_DIALOG = 'ADD_MESSAGE_DIALOG';
+const prefix = 'MESSAGES_';
+
+const ADD_MESSAGE_DIALOG = `${prefix}ADD_MESSAGE_DIALOG`;
 
 let initialState = {
     messages: [

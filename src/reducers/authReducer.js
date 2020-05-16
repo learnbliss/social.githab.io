@@ -1,8 +1,10 @@
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
-const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
-const FETCH_DATA = 'FETCH_DATA';
+const prefix = 'AUTH_';
+
+const SET_AUTH_USER_DATA = `${prefix}SET_AUTH_USER_DATA`;
+const FETCH_DATA = `${prefix}FETCH_DATA`;
 
 const initialState = {
     id: null,
@@ -48,41 +50,74 @@ export const isFetchingTrueAC = (boolean) => {
     }
 };
 
+// export const authMeThunk = () => {
+//     return (dispatch, getState) => {
+//         dispatch(isFetchingTrueAC(true));
+//         return authAPI.authMe().then(data => {
+//             if (data.resultCode === 0) {
+//                 const {id, email, login} = data.data;
+//                 dispatch(setAuthUserDataAC(id, email, login, true,))
+//             }
+//         });
+//     }
+// };
+
 export const authMeThunk = () => {
-    return (dispatch, getState) => {
+    return async (dispatch) => {
         dispatch(isFetchingTrueAC(true));
-        return authAPI.authMe().then(data => {
-            if (data.resultCode === 0) {
-                const {id, email, login} = data.data;
-                dispatch(setAuthUserDataAC(id, email, login, true,))
-            }
-        });
-        // dispatch(isFetchingTrueAC(false));
+        const data = await authAPI.authMe();
+        if (data.resultCode === 0) {
+            const {id, email, login} = data.data;
+            dispatch(setAuthUserDataAC(id, email, login, true,))
+        }
+        return data;
     }
 };
+
+// export const loginThunk = (email, password, rememberMe) => {
+//     return (dispatch, getState) => {
+//         authAPI.loginMe(email, password, rememberMe, true).then(data => {
+//             if (data.resultCode === 0) {
+//                 dispatch(authMeThunk())
+//             } else {
+//                 let messageError = data.messages.length > 0 ? data.messages[0] : 'Some error';
+//                 dispatch(stopSubmit('login', {
+//                     _error: messageError,
+//                 }))
+//             }
+//         })
+//     }
+// };
 
 export const loginThunk = (email, password, rememberMe) => {
-    return (dispatch, getState) => {
-        authAPI.loginMe(email, password, rememberMe, true).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(authMeThunk())
-            } else {
-                console.error('error, resulCode = ', data.resultCode);
-                let messageError = data.messages.length > 0 ? data.messages[0] : 'Some error';
-                dispatch(stopSubmit('login', {
-                    _error: messageError,
-                } ))
-            }
-        })
+    return async (dispatch) => {
+        const data = await authAPI.loginMe(email, password, rememberMe, true);
+        if (data.resultCode === 0) {
+            dispatch(authMeThunk())
+        } else {
+            let messageError = data.messages.length > 0 ? data.messages[0] : 'Some error';
+            dispatch(stopSubmit('login', {
+                _error: messageError,
+            }))
+        }
     }
 };
 
+// export const logoutThunk = () => {
+//     return (dispatch, getState) => {
+//         authAPI.logoutMe().then(data => {
+//             if (data.resultCode === 0) {
+//                 dispatch(setAuthUserDataAC(null, null, null, false))
+//             }
+//         })
+//     }
+// };
+
 export const logoutThunk = () => {
-    return (dispatch, getState) => {
-        authAPI.logoutMe().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setAuthUserDataAC(null, null, null, false))
-            }
-        })
+    return async (dispatch) => {
+        const data = await authAPI.logoutMe();
+        if (data.resultCode === 0) {
+            dispatch(setAuthUserDataAC(null, null, null, false))
+        }
     }
 };
