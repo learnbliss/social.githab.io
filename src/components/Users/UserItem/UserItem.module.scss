@@ -1,13 +1,6 @@
 $color: #D7DDE3;
 $secondaryColor: #67DBF9;
 
-.root {
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr;
-  padding: 1rem;
-}
-
 .wrapper {
   display: grid;
   grid-template-columns: 5rem 1fr;
@@ -66,39 +59,4 @@ $secondaryColor: #67DBF9;
 .status {
   align-self: end;
   font-size: .9rem;
-}
-
-.pagButtons {
-  display: grid;
-  grid-auto-flow: column;
-  justify-self: center;
-  grid-gap: 1rem;
-  align-content: center;
-  > span {
-    position: relative;
-    padding: .1rem;
-    cursor: pointer;
-    transition: color .2s, transform .2s ease-in-out;
-    user-select: none;
-  }
-  > span:hover {
-    color: $secondaryColor;
-    transform: scale(1.2) translateY(-.1rem);
-  }
-  > span.selectedPage {
-    color: $secondaryColor;
-    transform: scale(1.2) translateY(-.1rem);
-  }
-  > span.selectedPage:before {
-    position: absolute;
-    content: '';
-    width: .3rem;
-    height: .3rem;
-    border-radius: 50%;
-    background: $secondaryColor;
-    bottom: -.3rem;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
 }
