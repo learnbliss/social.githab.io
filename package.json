@@ -1,8 +1,8 @@
 {
   "name": "my-social-app",
-  "homepage": "https://learnbliss.github.io/social.githab.io/",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://learnbliss.github.io/social.githab.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
