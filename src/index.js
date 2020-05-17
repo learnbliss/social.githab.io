@@ -1,23 +1,23 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
-import App from "./App";
 import store from "./redux/redux";
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
+import AppContainer from "./AppContainer";
 
 // const reRenderThree = (state) => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App/>
-                </Provider>
-            </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
+ReactDOM.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 // };
 
 // reRenderThree(store.getState());

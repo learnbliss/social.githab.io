@@ -10,64 +10,41 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-import {connect} from "react-redux";
-import {compose} from "redux";
-import {initializedAppThunk} from "./reducers/appReducer";
-import Preloader from "./components/common/Preloader/Preloader";
 import HiApp from "./components/HiApp/HiApp";
 
-class App extends React.Component<{}> {
-
-    componentDidMount(): void {
-        this.props.initializedAppThunk();
-    }
-
-    render() {
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
-        return (
-            <div className="App">
-                <HeaderContainer/>
-                <NavBar/>
-                <div className="app-wrapper-content">
-                    <Route exact path='/' render={() => {
-                        return <HiApp/>
-                    }}/>
-                    <Route path='/dialogs' render={() => {
-                        return <DialogsContainer/>
-                    }}/>
-                    <Route path='/profile/:id?' render={() => {
-                        return <ProfileContainer/>
-                    }}/>
-                    <Route path='/users' render={() => {
-                        return <UsersContainer/>
-                    }}/>
-                    <Route path='/news' render={() => {
-                        return <News/>
-                    }}/>
-                    <Route path='/music' render={() => {
-                        return <Music/>
-                    }}/>
-                    <Route path='/settings' render={() => {
-                        return <Settings/>
-                    }}/>
-                    <Route path='/login' render={() => {
-                        return <LoginContainer/>
-                    }}/>
-                </div>
-
+const App = (props) => {
+    return (
+        <div className="App">
+            <HeaderContainer/>
+            <NavBar/>
+            <div className="app-wrapper-content">
+                <Route exact path='/' render={() => {
+                    return <HiApp/>
+                }}/>
+                <Route path='/dialogs' render={() => {
+                    return <DialogsContainer/>
+                }}/>
+                <Route path='/profile/:id?' render={() => {
+                    return <ProfileContainer/>
+                }}/>
+                <Route path='/users' render={() => {
+                    return <UsersContainer/>
+                }}/>
+                <Route path='/news' render={() => {
+                    return <News/>
+                }}/>
+                <Route path='/music' render={() => {
+                    return <Music/>
+                }}/>
+                <Route path='/settings' render={() => {
+                    return <Settings/>
+                }}/>
+                <Route path='/login' render={() => {
+                    return <LoginContainer/>
+                }}/>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
-export default compose(
-    connect((state) => {
-        return {
-            initialized: state.app.initialized,
-        }
-    }, {
-        initializedAppThunk,
-    }),
-)(App);
+export default App;
