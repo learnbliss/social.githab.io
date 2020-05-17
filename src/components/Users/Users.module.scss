@@ -4,3 +4,9 @@
   grid-template-columns: 1fr;
   padding: 1rem;
 }
+
+.wrap {
+  padding: 1rem 0;
+  display: grid;
+  grid-gap: 1rem;
+}

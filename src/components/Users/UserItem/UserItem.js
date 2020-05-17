@@ -6,7 +6,7 @@ import defaultAvatar from "../../../assets/img/UT8o1ZTXytaXXagOFbXf.jpg";
 const UserItem = props => {
     const {user, followingInProgress, followThunk, unfollowThunk} = props;
     return (
-        <div key={user.id} className={styles.wrapper}>
+        <div className={styles.wrapper}>
             <div className={styles.avatar}>
                 <div>
                     <NavLink to={`/profile/${user.id}`}>

@@ -4,7 +4,6 @@ import PostItem from './PostItem/PostItem';
 import PostForm from "./PostForm/PostForm";
 
 function MyPosts(props) {
-    console.log('MyPosts RENDER');
     const {posts} = props;
 
     const addPost = (post) => {
