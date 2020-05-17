@@ -7,35 +7,39 @@ $secondaryColor: #67DBF9;
   justify-self: center;
   grid-gap: 1rem;
   align-content: center;
+}
 
-  > span {
-    position: relative;
-    padding: .1rem;
-    cursor: pointer;
-    transition: color .2s, transform .2s ease-in-out;
-    user-select: none;
-  }
+.page,
+.arrow{
+  position: relative;
+  padding: .1rem;
+  cursor: pointer;
+  transition: color .2s, transform .2s ease-in-out;
+  user-select: none;
+  width: 1.5rem;
+  text-align: center;
+}
 
-  > span:hover {
-    color: $secondaryColor;
-    transform: scale(1.2) translateY(-.1rem);
-  }
+.page:hover,
+.arrow:hover {
+  color: $secondaryColor;
+  transform: scale(1.2) translateY(-.1rem);
+}
 
-  > span.selectedPage {
-    color: $secondaryColor;
-    transform: scale(1.2) translateY(-.1rem);
-  }
+.page.selectedPage {
+  color: $secondaryColor;
+  transform: scale(1.2) translateY(-.1rem);
+}
 
-  > span.selectedPage:before {
-    position: absolute;
-    content: '';
-    width: .3rem;
-    height: .3rem;
-    border-radius: 50%;
-    background: $secondaryColor;
-    bottom: -.3rem;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
+.page.selectedPage:before {
+  position: absolute;
+  content: '';
+  width: .7rem;
+  height: .2rem;
+  border-radius: .1rem;
+  background: $secondaryColor;
+  bottom: -.3rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }

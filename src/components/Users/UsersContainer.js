@@ -5,6 +5,7 @@ import {
     getFollowingInProgressSelector,
     getIsFetchingSelector,
     getPageSizeSelector,
+    // getPortionSize,
     getTotalUsersCountSelector,
     getUsersSelector,
     getUsersThunk,
@@ -44,18 +45,16 @@ class UsersContainer extends React.Component {
 
     render() {
         return (
-            <Users totalUsersCount={this.props.totalUsersCount}
+            <Users totalItemsCount={this.props.totalItemsCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
-                // unfollow={this.props.unfollowAC}
-                // follow={this.props.followAC}
                    isFetching={this.props.isFetching}
-                // followingInProgressAC={this.props.followingInProgressAC}
                    followingInProgress={this.props.followingInProgress}
                    followThunk={this.props.followThunk}
-                   unfollowThunk={this.props.unfollowThunk}/>
+                   unfollowThunk={this.props.unfollowThunk}
+                   portionSize={this.props.portionSize}/>
         );
     }
 }
@@ -64,7 +63,7 @@ class UsersContainer extends React.Component {
 //     return {
 //         users: state.userPage.users,
 //         pageSize: state.userPage.pageSize,
-//         totalUsersCount: state.userPage.totalUsersCount,
+//         totalItemsCount: state.userPage.totalItemsCount,
 //         currentPage: state.userPage.currentPage,
 //         isFetching: state.userPage.isFetching,
 //         followingInProgress: state.userPage.followingInProgress,
@@ -75,10 +74,11 @@ const mapStateToProps = (state) => {
     return {
         users: getUsersSelector(state),
         pageSize: getPageSizeSelector(state),
-        totalUsersCount: getTotalUsersCountSelector(state),
+        totalItemsCount: getTotalUsersCountSelector(state),
         currentPage: getCurrentPageSelector(state),
         isFetching: getIsFetchingSelector(state),
         followingInProgress: getFollowingInProgressSelector(state),
+        // portionSize: getPortionSize(state),
     }
 };
 

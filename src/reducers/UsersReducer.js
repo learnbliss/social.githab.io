@@ -14,11 +14,12 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = `${prefix}TOGGLE_IS_FOLLOWING_PROGRESS`;
 
 const initialState = {
     users: [],
-    pageSize: 5,
-    totalUsersCount: 0,
+    pageSize: 6,
+    totalItemsCount: 0,
     currentPage: 1,
     isFetching: false,
     followingInProgress: [],
+    // portionSize: 10,
 };
 
 export default function UsersReducer(state = initialState, action) {
@@ -58,7 +59,7 @@ export default function UsersReducer(state = initialState, action) {
         case SET_TOTAL_COUNT:
             return {
                 ...state,
-                totalUsersCount: action.payload.totalCount,
+                totalItemsCount: action.payload.totalCount,
             };
         case TOGGLE_IS_FETCHING:
             return {
@@ -73,7 +74,6 @@ export default function UsersReducer(state = initialState, action) {
                     : [state.followingInProgress.filter(userId => {
                         return userId !== action.payload.userId
                     })]
-                // false 7964 [7964]
             };
         default:
             return state
@@ -153,7 +153,7 @@ export const followingInProgressAC = (isProgress, userId) => {
 //         usersAPI.getUsers(currentPage, pageSize).then((data) => {
 //             dispatch(toggleIsFetchingAC(false));
 //             dispatch(setUsersAC(data.items));
-//             if (getState().userPage.totalUsersCount === 0) {
+//             if (getState().userPage.totalItemsCount === 0) {
 //                 dispatch(setTotalCountAC(data.totalCount));
 //             }
 //         });
@@ -166,7 +166,7 @@ export const getUsersThunk = (currentPage, pageSize) => {
         const data = await usersAPI.getUsers(currentPage, pageSize);
         dispatch(toggleIsFetchingAC(false));
         dispatch(setUsersAC(data.items));
-        if (getState().userPage.totalUsersCount === 0) {
+        if (getState().userPage.totalItemsCount === 0) {
             dispatch(setTotalCountAC(data.totalCount));
         }
     }
@@ -240,7 +240,7 @@ export const getPageSizeSelector = (state) => {
     return state.userPage.pageSize
 };
 export const getTotalUsersCountSelector = (state) => {
-    return state.userPage.totalUsersCount
+    return state.userPage.totalItemsCount
 };
 export const getCurrentPageSelector = (state) => {
     return state.userPage.currentPage
@@ -251,3 +251,6 @@ export const getIsFetchingSelector = (state) => {
 export const getFollowingInProgressSelector = (state) => {
     return state.userPage.followingInProgress
 };
+// export const getPortionSize = (state) => {
+//     return state.userPage.portionSize
+// };

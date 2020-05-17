@@ -4,14 +4,14 @@ import Preloader from "../common/Preloader/Preloader";
 import Paginator from "../common/Paginator/Paginator";
 import UserItem from "./UserItem/UserItem";
 
-const Users = ({totalUsersCount, pageSize, currentPage, onPageChanged, ...props}) => {
-return (
+const Users = ({totalItemsCount, pageSize, currentPage, onPageChanged, ...props}) => {
+    return (
         <div className={styles.root}>
-            <Paginator totalUsersCount={totalUsersCount}
+            <Paginator totalItemsCount={totalItemsCount}
                        pageSize={pageSize}
                        currentPage={currentPage}
                        onPageChanged={onPageChanged}/>
-<div className={styles.wrap}>
+            <div className={styles.wrap}>
                 {props.isFetching ?
                     <Preloader/>
                     : props.users.map((user) => {
