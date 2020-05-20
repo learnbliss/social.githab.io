@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ad731676d684ad1c1d659d96332b9c87",
+    "revision": "89bc7a14898193ab3bca200433e3764c",
     "url": "/social.githab.io/index.html"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social.githab.io/static/css/7.e208488b.chunk.css"
   },
   {
-    "revision": "469d51ff65d084121f06",
+    "revision": "941e9f04ef3ceecf3a92",
     "url": "/social.githab.io/static/css/main.7dc8cdf1.chunk.css"
   },
   {
@@ -64,8 +64,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social.githab.io/static/js/9.0950605b.chunk.js"
   },
   {
-    "revision": "469d51ff65d084121f06",
-    "url": "/social.githab.io/static/js/main.c3774405.chunk.js"
+    "revision": "941e9f04ef3ceecf3a92",
+    "url": "/social.githab.io/static/js/main.a28e1287.chunk.js"
   },
   {
     "revision": "0f7744e28e2cdc545b4f",
