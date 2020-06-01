@@ -1,1 +1,0 @@
-{"version":3,"sources":["components/News/News.js"],"names":["News"],"mappings":"sHAAA,2BAWeA,UARF,WACT,OACI","file":"static/js/9.0950605b.chunk.js","sourcesContent":["import React from 'react';\n// import styles from './News.module.scss'\n\nconst News = () => {\n    return (\n        <div>\n            news\n        </div>\n    );\n};\n\nexport default News;"],"sourceRoot":""}
